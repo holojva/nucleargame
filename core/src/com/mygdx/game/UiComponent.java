@@ -9,5 +9,4 @@ public abstract class UiComponent {
         root = new Table();
         root.setFillParent(true);
     }
-
 }
