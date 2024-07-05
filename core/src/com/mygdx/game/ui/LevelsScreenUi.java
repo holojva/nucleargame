@@ -1,6 +1,7 @@
+package com.mygdx.game.ui;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.UiComponent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class LevelsScreenUi extends UiComponent {

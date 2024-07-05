@@ -1,15 +1,8 @@
-package com.mygdx.game.ui.menu;
+package com.mygdx.game.ui;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
-import com.mygdx.game.UiComponent;
 
-public class MenuUi extends UiComponent {
+public class MenuScreenUi extends UiComponent {
     public Button startButton;
     public Button settingsButton;
     public Button exitButton;

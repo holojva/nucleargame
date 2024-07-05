@@ -1,11 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.ui;
 
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
 
 
-public class SettingScreenUi extends UiComponent  {
+public class SettingScreenUi extends UiComponent {
 
     public Button music;
     public Button sound;
