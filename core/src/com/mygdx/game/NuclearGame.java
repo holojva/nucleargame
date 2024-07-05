@@ -13,8 +13,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.screens.LevelsScreen;
 import com.mygdx.game.screens.MenuScreen;
 
 public class NuclearGame extends Game {
@@ -23,6 +25,7 @@ public class NuclearGame extends Game {
 	public FitViewport viewport;
 
 	public MenuScreen menuScreen;
+	public LevelsScreen levelsScreen;
 
 	public World world;
 	private float accumulator;
@@ -40,10 +43,13 @@ public class NuclearGame extends Game {
 		camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		menuScreen = new MenuScreen(this);
+		levelsScreen = new LevelsScreen(this);
 
 		accumulator = 0;
 
-		//setScreen(menuScreen);
+
+
+		setScreen(menuScreen);
 
 	}
 

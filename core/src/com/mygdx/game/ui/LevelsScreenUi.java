@@ -14,7 +14,7 @@ public class LevelsScreenUi extends UiComponent {
     public LevelsScreenUi(Skin skin) {
 
         Label title = new Label("Choose NPP", skin);
-        Image image = new Image(new Texture(""));
+        Image image = new Image(new Texture("skins/default/raw/white.png"));
 
         title.setAlignment(Align.center);
         title.setFontScale(2.5f);

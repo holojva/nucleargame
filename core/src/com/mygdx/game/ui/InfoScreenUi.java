@@ -8,6 +8,7 @@ public class InfoScreenUi extends UiComponent {
 
     public Image image;
 
+
     public InfoScreenUi(Skin skin) {
 
         Image background = new Image(new Texture(""));

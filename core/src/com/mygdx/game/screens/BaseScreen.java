@@ -1,12 +1,13 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.NuclearGame;
 
-public class BaseScreen {
+public class BaseScreen implements Screen {
     Stage stage;
     NuclearGame nuclearGame;
     public BaseScreen(NuclearGame nuclearGame) {
@@ -19,6 +20,27 @@ public class BaseScreen {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, false);
     }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
     public void render(float delta) {
         ScreenUtils.clear(Color.GRAY);
         stage.act(delta);
