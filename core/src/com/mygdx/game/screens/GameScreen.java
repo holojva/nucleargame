@@ -7,7 +7,8 @@ public class GameScreen extends BaseScreen{
     GameScreenUi ui;
     public GameScreen(NuclearGame nuclearGame) {
         super(nuclearGame);
-        ui = new GameScreenUi();
+        ui = new GameScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
+
     }
 }

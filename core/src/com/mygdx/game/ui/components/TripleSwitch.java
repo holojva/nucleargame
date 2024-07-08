@@ -1,5 +1,6 @@
 package com.mygdx.game.ui.components;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,16 +23,16 @@ public class TripleSwitch extends Actor {
     byte currentState = 0;
 
     public TripleSwitch (Skin skin) {
-        baseImage = new Image(skin, "triple-switch-base");
-        buttonImage = new Image(skin, "triple-switch-button");
+        baseImage = new Image(new Texture("skins/default/raw/white.png"));
+        buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
         labels = new Label[] {
                 new Label("1", skin),
                 new Label("2", skin),
                 new Label("3", skin)
         };
 
-        setSize(100, 100);
-        setPosition(0, 0);
+        setSize(600, 70);
+        setPosition(500, 300);
         setState((byte) 1);
 
         addListener(new SwitcherTripleInputListener());
@@ -46,16 +47,16 @@ public class TripleSwitch extends Actor {
             labels[i].getColor().a = (i == currentState) ? 1f : 0f;
         }
         buttonImage.setPosition(
-                buttonImage.getX(),
-                (baseImage.getY() + 1f/10 * baseImage.getWidth()) + (currentState) * buttonImage.getHeight()
+                (buttonImage.getX() + 1f/10 * baseImage.getWidth()) + (currentState) * buttonImage.getHeight(),
+                baseImage.getY()
         );
     }
 
     @Override
     public void setSize(float width, float height) {
-        width = (200 / 520f) * height;
+        height = (200 / 520f) * width;
         baseImage.setSize(width, height);
-        buttonImage.setSize((4f/5) * width, (4f/5) * width);
+        buttonImage.setSize((4f/5) * height, (4f/5) * height);
         super.setSize(width, height);
     }
 
@@ -64,8 +65,8 @@ public class TripleSwitch extends Actor {
         super.setPosition(x, y);
         baseImage.setPosition(x, y);
         buttonImage.setPosition(
-                x + 1f/10 * baseImage.getWidth(),
-                y + 1f/10 * baseImage.getWidth() + ((currentState) * buttonImage.getHeight())
+                x + 1f/10 * baseImage.getWidth()  + ((currentState) * buttonImage.getWidth()),
+                y
         );
         for (int i = 0; i < labels.length; i++) {
             labels[i].setPosition(
@@ -91,13 +92,13 @@ public class TripleSwitch extends Actor {
         for(Label label : labels) label.act(delta);
     }
 
-    public void switchLower() {
+    public void switchLeft() {
         if (currentState <= 0) return;
         currentState -= 1;
 
         buttonImage.addAction(Actions.moveTo(
-                buttonImage.getX(),
-                buttonImage.getY() - buttonImage.getHeight(),
+                buttonImage.getX() - buttonImage.getWidth(),
+                buttonImage.getY(),
                 0.2f
         ));
 
@@ -106,11 +107,11 @@ public class TripleSwitch extends Actor {
         labels[currentState + 1].addAction(sequence(Actions.fadeOut(0.1f)));
     }
 
-    public void switchUpper() {
+    public void switchRight() {
         if (currentState >= 2) return;
         currentState += 1;
         MoveToAction moveAction = new MoveToAction();
-        moveAction.setPosition(buttonImage.getX(), buttonImage.getY() + buttonImage.getHeight());
+        moveAction.setPosition(buttonImage.getX() + buttonImage.getWidth(), buttonImage.getY());
         moveAction.setDuration(0.2f);
         buttonImage.addAction(moveAction);
         labels[currentState].addAction(sequence(Actions.delay(0.2f), Actions.fadeIn(0.2f)));
@@ -130,8 +131,8 @@ public class TripleSwitch extends Actor {
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            if (y < initialPosition.y) switchLower();
-            else if (y > initialPosition.y) switchUpper();
+            if (x < initialPosition.x) switchLeft();
+            else if (x > initialPosition.x) switchRight();
         }
     }
 
