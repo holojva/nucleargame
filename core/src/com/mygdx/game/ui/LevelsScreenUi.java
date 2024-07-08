@@ -1,5 +1,6 @@
 package com.mygdx.game.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -13,26 +14,48 @@ public class LevelsScreenUi extends UiComponent {
 
     public LevelsScreenUi(Skin skin) {
 
+        Table table = new Table();
         Label title = new Label("Choose NPP", skin);
         Image image = new Image(new Texture("skins/default/raw/white.png"));
+        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
 
-        title.setAlignment(Align.center);
-        title.setFontScale(2.5f);
-
-        level1 = new TextButton(" 1 ", skin);
-        level2 = new TextButton(" 2 ", skin);
-        level3 = new TextButton(" 3 ", skin);
-        level4 = new TextButton(" 4 ", skin);
+        level1 = new Button(image.getDrawable());
+        level2 = new Button(image.getDrawable());
+        level3 = new Button(image.getDrawable());
+        level4 = new Button(image.getDrawable());
         exit = new TextButton("Return", skin);
 
         root.setBackground(image.getDrawable());
-        root.add(title).width(700);
-        root.row();
-        root.add(level1);
-        root.add(level1);
-        root.add(level1);
-        root.add(level1);
-        root.row();
-        root.add(exit);
+
+        root.addActor(title);
+        title.setAlignment(Align.center);
+        title.setFontScale(2.5f);
+        title.setColor(Color.BLACK);
+        title.setPosition(420, 900);
+        title.setSize(1000, 100);
+
+        root.addActor(table);
+        table.setBackground(image1.getDrawable());
+        table.setPosition(79, 370);
+        table.setSize(1780, 420);
+
+        table.addActor(level1);
+        level1.setPosition(30, 18);
+        level1.setSize(390, 390);
+        table.addActor(level2);
+        level2.setPosition(470, 18);
+        level2.setSize(390, 390);
+        table.addActor(level3);
+        level3.setPosition(910, 18);
+        level3.setSize(390, 390);
+        table.addActor(level4);
+        level4.setPosition(1360, 18);
+        level4.setSize(390, 390);
+
+
+
+        root.addActor(exit);
+        exit.setPosition(820, 120);
+        exit.setSize(200, 100);
     }
 }

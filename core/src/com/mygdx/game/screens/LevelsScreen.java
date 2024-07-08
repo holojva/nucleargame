@@ -14,12 +14,22 @@ public class LevelsScreen extends BaseScreen{
         stage.addActor(ui.root);
 
         ui.exit.addListener(exitButtonClickedListener);
+        ui.level1.addListener(levelOneButtonClickedListener);
+        ui.level2.addListener(levelOneButtonClickedListener);
+        ui.level3.addListener(levelOneButtonClickedListener);
+        ui.level4.addListener(levelOneButtonClickedListener);
     }
 
     ClickListener exitButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.menuScreen);
+        }
+    };
+    ClickListener levelOneButtonClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+
         }
     };
 }

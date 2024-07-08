@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.screens.LevelsScreen;
 import com.mygdx.game.screens.MenuScreen;
+import com.mygdx.game.screens.SettingsScreen;
 
 public class NuclearGame extends Game {
 	public Skin skin;
@@ -26,15 +27,11 @@ public class NuclearGame extends Game {
 
 	public MenuScreen menuScreen;
 	public LevelsScreen levelsScreen;
+	public SettingsScreen settingsScreen;
 
-	public World world;
-	private float accumulator;
 
 	@Override
 	public void create () {
-
-		Box2D.init();
-		world = new World(new Vector2(0, 0), true);
 
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
 		viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, camera);
@@ -44,10 +41,7 @@ public class NuclearGame extends Game {
 
 		menuScreen = new MenuScreen(this);
 		levelsScreen = new LevelsScreen(this);
-
-		accumulator = 0;
-
-
+		settingsScreen = new SettingsScreen(this);
 
 		setScreen(menuScreen);
 
@@ -58,13 +52,4 @@ public class NuclearGame extends Game {
 		skin.dispose();
 	}
 
-	public void stepWorld() {
-		float delta = Gdx.graphics.getDeltaTime();
-		accumulator += Math.min(delta, 0.25f);
-
-		if (accumulator >= STEP_TIME) {
-			accumulator -= STEP_TIME;
-			world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
-		}
-	}
 }

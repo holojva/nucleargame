@@ -10,13 +10,16 @@ import com.mygdx.game.NuclearGame;
 public class BaseScreen implements Screen {
     Stage stage;
     NuclearGame nuclearGame;
+
     public BaseScreen(NuclearGame nuclearGame) {
         this.nuclearGame = nuclearGame;
-        if (nuclearGame.viewport != null)  stage = new Stage(nuclearGame.viewport);
+        if (nuclearGame.viewport != null) stage = new Stage(nuclearGame.viewport);
     }
+
     public void show() {
         Gdx.input.setInputProcessor(stage);
     }
+
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, false);
     }
@@ -48,5 +51,6 @@ public class BaseScreen implements Screen {
         handleInput();
     }
 
-    public void handleInput() {}
+    public void handleInput() {
+    }
 }
