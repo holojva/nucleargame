@@ -18,9 +18,9 @@ public class SettingScreenUi extends UiComponent {
 
     public SettingScreenUi(Skin skin) {
 
-        Image background = new Image(new Texture("skins/default/raw/white.png"));
+        Image background = new Image(new Texture("nuke/nuke/nuclear.png"));
         Table table = new Table();
-        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
+        Image image1 = new Image(new Texture("nuke/nuke/nuclear.png"));
 
         table.setBackground(image1.getDrawable());
         table.setPosition(80, 100);

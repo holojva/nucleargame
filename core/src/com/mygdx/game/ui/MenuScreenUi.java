@@ -22,9 +22,9 @@ public class MenuScreenUi extends UiComponent {
     public MenuScreenUi(Skin skin) {
 
         Label title = new Label("NCC SIMULATOR", skin);
-        Image image = new Image(new Texture("skins/default/raw/white.png"));
+        Image image = new Image(new Texture("nuke/nuke/nuclear2.png"));
         table = new Table();
-        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
+        Image image1 = new Image(new Texture("nuke/nuke/nuclear2.png"));
 
         title.setAlignment(Align.right);
         title.setFontScale(2.5f);
@@ -36,7 +36,7 @@ public class MenuScreenUi extends UiComponent {
         title.setPosition(1200, 950);
         table.setPosition(1300, 100);
         table.setSize(680, 940);
-        table.setBackground(image1.getDrawable());
+        //table.setBackground(image1.getDrawable());
 
         startButton = new TextButton("start", skin);
         settingsButton = new TextButton("settings", skin);
