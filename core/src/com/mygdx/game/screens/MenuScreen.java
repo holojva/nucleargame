@@ -15,8 +15,8 @@ public class MenuScreen extends BaseScreen {
         stage.addActor(ui.root);
 
         ui.exitButton.addListener(exitButtonClickedListener);
-         ui.startButton.addListener(startButtonClickedListener);
-        // ui.settingsButton.addListener(settingsButtonClickedListener);
+        ui.startButton.addListener(startButtonClickedListener);
+        ui.settingsButton.addListener(settingsButtonClickedListener);
     }
 
     ClickListener exitButtonClickedListener = new ClickListener() {
@@ -25,10 +25,18 @@ public class MenuScreen extends BaseScreen {
             Gdx.app.exit();
         }
     };
+
     ClickListener startButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.levelsScreen);
+        }
+    };
+
+    ClickListener settingsButtonClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            nuclearGame.setScreen(nuclearGame.settingsScreen);
         }
     };
 }
