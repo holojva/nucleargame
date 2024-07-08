@@ -22,10 +22,10 @@ public class TripleSwitch extends Actor {
 
     byte currentState = 0;
 
-    public TripleSwitch (Skin skin) {
+    public TripleSwitch(Skin skin) {
         baseImage = new Image(new Texture("skins/default/raw/white.png"));
         buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
-        labels = new Label[] {
+        labels = new Label[]{
                 new Label("1", skin),
                 new Label("2", skin),
                 new Label("3", skin)
@@ -47,8 +47,8 @@ public class TripleSwitch extends Actor {
             labels[i].getColor().a = (i == currentState) ? 1f : 0f;
         }
         buttonImage.setPosition(
-                (buttonImage.getX() + 1f/10 * baseImage.getWidth()) + (currentState) * buttonImage.getHeight(),
-                baseImage.getY()
+                (buttonImage.getX() + 1f/10) + ((currentState) * buttonImage.getWidth()),
+                baseImage.getY() + 1f / 10 * baseImage.getHeight()
         );
     }
 
@@ -56,7 +56,7 @@ public class TripleSwitch extends Actor {
     public void setSize(float width, float height) {
         height = (200 / 520f) * width;
         baseImage.setSize(width, height);
-        buttonImage.setSize((4f/5) * height, (4f/5) * height);
+        buttonImage.setSize((4f / 5) * height, (4f / 5) * height);
         super.setSize(width, height);
     }
 
@@ -65,13 +65,13 @@ public class TripleSwitch extends Actor {
         super.setPosition(x, y);
         baseImage.setPosition(x, y);
         buttonImage.setPosition(
-                x + 1f/10 * baseImage.getWidth()  + ((currentState) * buttonImage.getWidth()),
-                y
+                x + 1f / 10 * baseImage.getHeight(),
+                y + 1f / 10 * baseImage.getWidth()
         );
         for (int i = 0; i < labels.length; i++) {
             labels[i].setPosition(
-                    buttonImage.getX() + buttonImage.getWidth() / 2f - labels[i].getWidth() / 2,
-                    (y + 1f/10 * baseImage.getWidth()) + buttonImage.getHeight() * ((2 * i + 1) / 2f) - labels[i].getHeight() / 2
+                    buttonImage.getX() - (buttonImage.getWidth() / 2f) +  (buttonImage.getHeight() * ((2 * i + 1) / 2f)) - (labels[i].getHeight() / 2),
+                    (y + 1f/10 * baseImage.getWidth()) - labels[i].getHeight() / 2
             );
         }
 
@@ -89,7 +89,7 @@ public class TripleSwitch extends Actor {
     public void act(float delta) {
         baseImage.act(delta);
         buttonImage.act(delta);
-        for(Label label : labels) label.act(delta);
+        for (Label label : labels) label.act(delta);
     }
 
     public void switchLeft() {
