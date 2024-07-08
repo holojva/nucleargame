@@ -17,7 +17,7 @@ public class InfoScreen extends BaseScreen {
     ClickListener gameStartClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuclearGame.setScreen(nuclearGame.menuScreen);
+            nuclearGame.setScreen(nuclearGame.gameScreen);
         }
     };
 }

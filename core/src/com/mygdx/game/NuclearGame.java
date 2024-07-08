@@ -16,10 +16,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.mygdx.game.screens.InfoScreen;
-import com.mygdx.game.screens.LevelsScreen;
-import com.mygdx.game.screens.MenuScreen;
-import com.mygdx.game.screens.SettingsScreen;
+import com.mygdx.game.screens.*;
+import com.mygdx.game.ui.GameScreenUi;
 
 public class NuclearGame extends Game {
 	public Skin skin;
@@ -30,6 +28,7 @@ public class NuclearGame extends Game {
 	public LevelsScreen levelsScreen;
 	public SettingsScreen settingsScreen;
 	public InfoScreen infoScreen;
+	public GameScreen gameScreen;
 
 
 	@Override
@@ -45,6 +44,7 @@ public class NuclearGame extends Game {
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
 		infoScreen = new InfoScreen(this);
+		gameScreen = new GameScreen(this);
 
 		setScreen(menuScreen);
 
