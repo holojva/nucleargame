@@ -31,8 +31,8 @@ public class TripleSwitch extends Actor {
                 new Label("3", skin)
         };
 
-        setSize(600, 70);
-        setPosition(500, 300);
+        setSize(420, 70);
+        setPosition(450, 20);
         setState((byte) 1);
 
         addListener(new SwitcherTripleInputListener());
@@ -70,8 +70,7 @@ public class TripleSwitch extends Actor {
         );
         for (int i = 0; i < labels.length; i++) {
             labels[i].setPosition(
-                    buttonImage.getX() - (buttonImage.getWidth() / 2f) +  (buttonImage.getHeight() * ((2 * i + 1) / 2f)) - (labels[i].getHeight() / 2),
-                    (y + 1f/10 * baseImage.getWidth()) - labels[i].getHeight() / 2
+                    buttonImage.getX() + buttonImage.getWidth()/2f + ((buttonImage.getWidth() + 1/10f) * i), buttonImage.getY() + 40
             );
         }
 
