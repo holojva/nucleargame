@@ -14,22 +14,22 @@ public class SparklingWaterScreenUi extends UiComponent {
 
     public SparklingWaterScreenUi(Skin skin) {
         glass = new Image(new Texture(""));
-        rizqa = new Image(new Texture());
-        water = new Image(new Texture());
+        //rizqa = new Image(new Texture());
+       // water = new Image(new Texture());
         Image background = new Image(new Texture("skins/default/raw/white.png"));
         table = new Table();
         Random r = new Random();
 
         root.setBackground(background.getDrawable());
         root.addActor(water);
-        water.setPosition();
-        water.setSize();
+        //water.setPosition();
+        //water.setSize();
         root.addActor(table);
-        table.setPosition();
-        table.setSize();
+        //table.setPosition();
+        //table.setSize();
         table.add(glass);
         table.addActor(rizqa);
-        rizqa.setSize();
+       // rizqa.setSize();
         rizqa.setPosition(glass.getImageX(), glass.getImageHeight() - r.nextInt(30));
 
     }
