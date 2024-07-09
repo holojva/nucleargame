@@ -29,8 +29,8 @@ public class Switch extends Actor {
                 new Label("2", skin),
         };
 
-        setSize(420, 200);
-        setPosition(20, 700);
+        setSize(400, 200);
+        setPosition(20, 20);
         setState((byte) 0);
 
         addListener(new SwitchInputListener());
@@ -113,7 +113,7 @@ public class Switch extends Actor {
     public void setSize(float width, float height) {
         height = (200 / 520f) * width;
         baseImage.setSize(width, height);
-        buttonImage.setSize((4f / 5) * height, (4f / 5) * height);
+        buttonImage.setSize(width/2 - 17, height - 30);
         super.setSize(width, height);
     }
 
