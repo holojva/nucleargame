@@ -25,8 +25,8 @@ public class Switch extends Actor {
         baseImage = new Image(new Texture("skins/default/raw/white.png"));
         buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
         labels = new Label[]{
-                new Label("1", skin),
-                new Label("2", skin),
+                new Label("ON", skin),
+                new Label("OFF", skin),
         };
 
         setSize(400, 200);
@@ -127,7 +127,7 @@ public class Switch extends Actor {
         );
         for (int i = 0; i < labels.length; i++) {
             labels[i].setPosition(
-                    buttonImage.getX() + buttonImage.getWidth() / 2f + ((buttonImage.getWidth() + 1 / 10f) * i) - 5,
+                    buttonImage.getX() + buttonImage.getWidth() / 2f + ((buttonImage.getWidth() + 1 / 10f) * i) - 10,
                     buttonImage.getY() + 30
             );
         }

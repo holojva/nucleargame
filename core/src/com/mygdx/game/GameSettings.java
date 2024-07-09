@@ -21,4 +21,10 @@ public class GameSettings {
 
     public static final String TextInfoScreenTwo = "";
 
+    public static final String[] tutorialTexts = new String[]{
+            "",
+            "",
+            "",
+    };
+
 }
