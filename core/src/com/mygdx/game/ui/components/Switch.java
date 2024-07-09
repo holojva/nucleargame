@@ -19,14 +19,14 @@ public class Switch extends Actor {
     Image buttonImage;
     Label[] labels;
 
-    byte currentState = 0;
+    public byte currentState = 0;
 
     public Switch(Skin skin) {
         baseImage = new Image(new Texture("skins/default/raw/white.png"));
         buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
         labels = new Label[]{
-                new Label("ON", skin),
                 new Label("OFF", skin),
+                new Label("ON", skin),
         };
 
         setSize(400, 200);
@@ -50,8 +50,8 @@ public class Switch extends Actor {
         );
     }
 
-    public void switchLeft() {
-        if (currentState <= 0) return;
+    public boolean switchLeft() {
+        if (currentState <= 0) return false;
         currentState -= 1;
 
         buttonImage.addAction(Actions.moveTo(
@@ -63,10 +63,11 @@ public class Switch extends Actor {
 
         labels[currentState].addAction(sequence(Actions.delay(0.2f), Actions.fadeIn(0.2f)));
         labels[currentState + 1].addAction(sequence(Actions.fadeOut(0.1f)));
+        return true;
     }
 
-    public void switchRight() {
-        if (currentState >= 2) return;
+    public boolean switchRight() {
+        if (currentState >= 1) return false;
         currentState += 1;
         MoveToAction moveAction = new MoveToAction();
         moveAction.setPosition(buttonImage.getX() + buttonImage.getWidth(), buttonImage.getY());
@@ -74,6 +75,7 @@ public class Switch extends Actor {
         buttonImage.addAction(moveAction);
         labels[currentState].addAction(sequence(Actions.delay(0.2f), Actions.fadeIn(0.2f)));
         labels[currentState - 1].addAction(sequence(Actions.fadeOut(0.1f)));
+        return true;
 
     }
 

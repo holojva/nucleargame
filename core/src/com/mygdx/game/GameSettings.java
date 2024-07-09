@@ -6,7 +6,7 @@ public class GameSettings {
     public static final float STEP_TIME = 1f / 60f;
     public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 6;
-    public static final String SKIN_PATH = "skins/default/skin/uiskin.json";
+    public static final String SKIN_PATH = "nuke9/nuclear.json";
 
     // TextResources:
     public static final String TextInfoScreenOne = "On June 26, 1954, under the leadership of Igor Vasilyevich \n"
