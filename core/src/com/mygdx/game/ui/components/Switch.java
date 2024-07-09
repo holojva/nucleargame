@@ -14,32 +14,30 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
-public class TripleSwitch extends Actor {
-
+public class Switch extends Actor {
     Image baseImage;
     Image buttonImage;
     Label[] labels;
 
     byte currentState = 0;
 
-    public TripleSwitch(Skin skin) {
+    public Switch(Skin skin) {
         baseImage = new Image(new Texture("skins/default/raw/white.png"));
         buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
         labels = new Label[]{
                 new Label("1", skin),
                 new Label("2", skin),
-                new Label("3", skin)
         };
 
-        setSize(420, 70);
-        setPosition(450, 20);
-        setState((byte) 1);
+        setSize(420, 200);
+        setPosition(20, 700);
+        setState((byte) 0);
 
-        addListener(new SwitcherTripleInputListener());
+        addListener(new SwitchInputListener());
     }
 
     public void setState(byte state) {
-        if (state < 0 || state >= 3) throw new IllegalArgumentException();
+        if (state < 0 || state >= 2) throw new IllegalArgumentException();
 
         setPosition(getX(), getY());
         currentState = state;
@@ -47,49 +45,9 @@ public class TripleSwitch extends Actor {
             labels[i].getColor().a = (i == currentState) ? 1f : 0f;
         }
         buttonImage.setPosition(
-                (buttonImage.getX() + 1f/10) + ((currentState) * buttonImage.getWidth()),
+                (buttonImage.getX() + 1f / 10) + ((currentState) * buttonImage.getWidth()),
                 baseImage.getY() + 1f / 10 * baseImage.getHeight()
         );
-    }
-
-    @Override
-    public void setSize(float width, float height) {
-        height = (200 / 520f) * width;
-        baseImage.setSize(width, height);
-        buttonImage.setSize((4f / 5) * height, (4f / 5) * height);
-        super.setSize(width, height);
-    }
-
-    @Override
-    public void setPosition(float x, float y) {
-        super.setPosition(x, y);
-        baseImage.setPosition(x, y);
-        buttonImage.setPosition(
-                x + 1f / 10 * baseImage.getHeight(),
-                y + 1f / 10 * baseImage.getWidth()
-        );
-        for (int i = 0; i < labels.length; i++) {
-            labels[i].setPosition(
-                    buttonImage.getX() + buttonImage.getWidth()/2f + ((buttonImage.getWidth() + 1/10f) * i) - 5,
-                    buttonImage.getY() + 30
-            );
-        }
-
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        baseImage.draw(batch, parentAlpha);
-        buttonImage.draw(batch, parentAlpha);
-        for (Label label : labels)
-            label.draw(batch, parentAlpha);
-    }
-
-    @Override
-    public void act(float delta) {
-        baseImage.act(delta);
-        buttonImage.act(delta);
-        for (Label label : labels) label.act(delta);
     }
 
     public void switchLeft() {
@@ -119,7 +77,7 @@ public class TripleSwitch extends Actor {
 
     }
 
-    private class SwitcherTripleInputListener extends InputListener {
+    private class SwitchInputListener extends InputListener {
 
         Vector2 initialPosition;
 
@@ -134,6 +92,46 @@ public class TripleSwitch extends Actor {
             if (x < initialPosition.x) switchLeft();
             else if (x > initialPosition.x) switchRight();
         }
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        baseImage.draw(batch, parentAlpha);
+        buttonImage.draw(batch, parentAlpha);
+        for (Label label : labels)
+            label.draw(batch, parentAlpha);
+    }
+
+    @Override
+    public void act(float delta) {
+        baseImage.act(delta);
+        buttonImage.act(delta);
+        for (Label label : labels) label.act(delta);
+    }
+
+    @Override
+    public void setSize(float width, float height) {
+        height = (200 / 520f) * width;
+        baseImage.setSize(width, height);
+        buttonImage.setSize((4f / 5) * height, (4f / 5) * height);
+        super.setSize(width, height);
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        baseImage.setPosition(x, y);
+        buttonImage.setPosition(
+                x + 1f / 10 * baseImage.getHeight(),
+                y + 1f / 10 * baseImage.getWidth()
+        );
+        for (int i = 0; i < labels.length; i++) {
+            labels[i].setPosition(
+                    buttonImage.getX() + buttonImage.getWidth() / 2f + ((buttonImage.getWidth() + 1 / 10f) * i) - 5,
+                    buttonImage.getY() + 30
+            );
+        }
+
     }
 
 }
