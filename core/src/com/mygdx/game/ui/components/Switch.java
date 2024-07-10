@@ -50,8 +50,8 @@ public class Switch extends Actor {
         );
     }
 
-    public boolean switchLeft() {
-        if (currentState <= 0) return false;
+    public void switchLeft() {
+        if (currentState <= 0) return;
         currentState -= 1;
 
         buttonImage.addAction(Actions.moveTo(
@@ -63,11 +63,10 @@ public class Switch extends Actor {
 
         labels[currentState].addAction(sequence(Actions.delay(0.2f), Actions.fadeIn(0.2f)));
         labels[currentState + 1].addAction(sequence(Actions.fadeOut(0.1f)));
-        return true;
     }
 
-    public boolean switchRight() {
-        if (currentState >= 1) return false;
+    public void switchRight() {
+        if (currentState >= 1) return;
         currentState += 1;
         MoveToAction moveAction = new MoveToAction();
         moveAction.setPosition(buttonImage.getX() + buttonImage.getWidth(), buttonImage.getY());
@@ -75,8 +74,6 @@ public class Switch extends Actor {
         buttonImage.addAction(moveAction);
         labels[currentState].addAction(sequence(Actions.delay(0.2f), Actions.fadeIn(0.2f)));
         labels[currentState - 1].addAction(sequence(Actions.fadeOut(0.1f)));
-        return true;
-
     }
 
     private class SwitchInputListener extends InputListener {

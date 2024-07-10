@@ -4,15 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
-import com.mygdx.game.ui.components.Potentiometer;
-import com.mygdx.game.ui.components.PowerDisplay;
-import com.mygdx.game.ui.components.Switch;
-import com.mygdx.game.ui.components.TripleSwitch;
+import com.mygdx.game.ui.components.*;
 
 public class GameScreenUi extends UiComponent{
     public Potentiometer speedControl;
     public TripleSwitch battery;
-    public Slider kernels;
+    public OkSlider kernels;
     public Switch SPOT;
     public PowerDisplay closeToFail;
     public PowerDisplay generatedPower;
@@ -21,7 +18,7 @@ public class GameScreenUi extends UiComponent{
     public GameScreenUi(Skin skin) {
         Image image = new Image(new Texture("Group 317.png"));
         battery = new TripleSwitch(skin);
-        kernels = new Slider(0, 100, 10, false, skin);
+        kernels = new OkSlider(0, 100, 10, false, skin, 30);
         SPOT = new Switch(skin);
         //speedControl = new Potentiometer(skin);
         closeToFail = new PowerDisplay(0, 100, 80, 4);

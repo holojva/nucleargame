@@ -67,11 +67,20 @@ public class PowerDisplay extends Actor {
     public float getCurrentValue() {
         return currentValue;
     }
-    public void increase(float coefficient) {
-        currentValue += coefficient;
+
+    public float getInaccuracy() {
+        return inaccuracy;
     }
-    public void decrease(float coefficient) {
-        currentValue -= coefficient;
+
+    public float getIdealValue() {
+        return idealValue;
+    }
+
+    public void increaseValue(float coefficient) {
+        setCurrentValue(currentValue + coefficient);
+    }
+    public void decreaseValue(float coefficient) {
+        setCurrentValue(currentValue - coefficient);
     }
 
 }
