@@ -23,8 +23,8 @@ public class TripleSwitch extends Actor {
     public byte currentState = 0;
 
     public TripleSwitch(Skin skin) {
-        baseImage = new Image(new Texture("skins/default/raw/white.png"));
-        buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
+        baseImage = new Image(skin, "round-white");
+        buttonImage = new Image(skin, "button");
         labels = new Label[]{
                 new Label("1", skin),
                 new Label("2", skin),

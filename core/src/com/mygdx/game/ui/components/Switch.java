@@ -22,8 +22,8 @@ public class Switch extends Actor {
     public byte currentState = 0;
 
     public Switch(Skin skin) {
-        baseImage = new Image(new Texture("skins/default/raw/white.png"));
-        buttonImage = new Image(new Texture("skins/default/raw/selection.png"));
+        baseImage = new Image(skin, "round-white");
+        buttonImage = new Image(skin, "button");
         labels = new Label[]{
                 new Label("OFF", skin),
                 new Label("ON", skin),

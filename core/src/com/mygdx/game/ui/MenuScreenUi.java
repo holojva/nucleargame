@@ -23,14 +23,12 @@ public class MenuScreenUi extends UiComponent {
 
         Image image = new Image(skin, "menuscreen-bg");
         table = new Table();
-        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
 
 
         root.setBackground(image.getDrawable());
         root.addActor(table);
         table.setPosition(1300, 100);
         table.setSize(680, 940);
-        table.setBackground(image1.getDrawable());
 
         startButton = new TextButton("start", skin);
         settingsButton = new TextButton("settings", skin);

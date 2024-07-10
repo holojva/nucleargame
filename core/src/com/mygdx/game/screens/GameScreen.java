@@ -30,7 +30,7 @@ public class GameScreen extends BaseScreen{
 
         ui.SPOT.addListener(spotClickedListener);
         ui.battery.addListener(batteryClickedListener);
-        //ui.speedControl.addListener(speedControlClickedListener);
+        ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
     }
     ClickListener gameStopClickedListener = new ClickListener() {

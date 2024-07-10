@@ -20,7 +20,7 @@ public class GameScreenUi extends UiComponent{
         battery = new TripleSwitch(skin);
         kernels = new Slider(0, 1, 0.01f, false, skin);
         SPOT = new Switch(skin);
-        //speedControl = new Potentiometer(skin);
+        speedControl = new Potentiometer(skin);
         closeToFail = new PowerDisplay(0, 100, 80, 4);
         generatedPower = new PowerDisplay(0, 100, 80, 4);
         batteryCharge = new PowerDisplay(0, 100, 80, 4);
@@ -43,9 +43,9 @@ public class GameScreenUi extends UiComponent{
         root.addActor(fatigue);
         fatigue.setPosition(618, 228);
         fatigue.setCurrentValue(30);
-        //root.addActor(speedControl);
-        //speedControl.setPosition(600, 30);
-        //speedControl.setSize(300, 300);
+        root.addActor(speedControl);
+        speedControl.setPosition(600, 30);
+        speedControl.setSize(300, 300);
     }
 
 }
