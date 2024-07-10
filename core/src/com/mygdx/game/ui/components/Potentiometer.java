@@ -21,8 +21,8 @@ public class Potentiometer extends Actor {
     private final float VERTICAL_MARGIN_OFFSET = -2f;
 
     public Potentiometer(Skin skin) {
-        baseImage = new Image(skin, "pat-base");
-        spinnerImage = new Image(skin, "pat-spinner");
+        baseImage = new Image(skin, "graybutton");
+        spinnerImage = new Image(skin, "cursor");
 
         setPosition(0, 0);
         addListener(new PotentiometerInputLister());

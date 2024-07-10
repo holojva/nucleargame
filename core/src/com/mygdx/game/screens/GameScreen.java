@@ -27,7 +27,7 @@ public class GameScreen extends BaseScreen {
 
         ui.SPOT.addListener(spotClickedListener);
         ui.battery.addListener(batteryClickedListener);
-        ui.speedControl.addListener(speedControlClickedListener);
+        //ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
     }
 
@@ -76,8 +76,6 @@ public class GameScreen extends BaseScreen {
 
 
 
-            System.out.println(ui.kernels.getValue());
-
         }
 
     };
@@ -86,8 +84,8 @@ public class GameScreen extends BaseScreen {
     public void render(float delta) {
         super.render(delta);
         float x = ui.kernels.getValue();
-        double y = ui.speedControl.getValue();
-        double z = Math.pow(x, 0.3) * 1 / Math.pow((y - 0.02), 0.1);
+        //float y = (float) ui.speedControl.getValue();
+        //float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow((y - 0.02), 0.1));
 
        // ui.generatedPower.setCurrentValue(z);
 
