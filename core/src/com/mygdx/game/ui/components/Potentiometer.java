@@ -16,12 +16,12 @@ public class Potentiometer extends Actor {
 
     public double a = Math.PI / 3;
 
-    private final float SPINNER_SIZE_RATIO = 0.2f;
+    private final float SPINNER_SIZE_RATIO = 0.78f;
     private final float HORIZONTAL_MARGIN_OFFSET = -11.3f;
     private final float VERTICAL_MARGIN_OFFSET = -2f;
 
     public Potentiometer(Skin skin) {
-        baseImage = new Image(skin, "base");
+        baseImage = new Image(skin, "graybutton");
         spinnerImage = new Image(skin, "potentiometer");
 
         setPosition(0, 0);
@@ -42,10 +42,8 @@ public class Potentiometer extends Actor {
         super.setPosition(x, y);
         baseImage.setPosition(x, y);
         spinnerImage.setPosition(
-                x + baseImage.getWidth() / 2 - baseImage.getWidth() / 2
-                        - HORIZONTAL_MARGIN_OFFSET * baseImage.getWidth() / 100,
-                y + baseImage.getHeight() / 2 - baseImage.getHeight() / 2
-                        - VERTICAL_MARGIN_OFFSET * baseImage.getHeight() / 30
+                x + (baseImage.getWidth() / 2) - 26,
+                y + (baseImage.getHeight() / 2) + 2
         );
         spinnerImage.setOrigin(spinnerImage.getWidth() / 2, spinnerImage.getHeight() / 2);
     }

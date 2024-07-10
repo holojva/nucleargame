@@ -44,8 +44,8 @@ public class GameScreenUi extends UiComponent{
         fatigue.setPosition(618, 228);
         fatigue.setCurrentValue(30);
         root.addActor(speedControl);
-        speedControl.setPosition(600, 30);
-        speedControl.setSize(300, 300);
+        speedControl.setPosition(935, 20);
+        speedControl.setSize(180, 180);
     }
 
 }
