@@ -7,9 +7,16 @@ import com.mygdx.game.NuclearGame;
 import com.mygdx.game.ui.LevelsScreenUi;
 
 public class LevelsScreen extends BaseScreen{
-    LevelsScreenUi ui;
+    public LevelsScreenUi ui;
+    GameScreen gameScreen;
+    NuclearGame nuke;
+    SettingsScreen settingsScreen;
+    LevelsScreenUi levelsScreenui;
     public LevelsScreen(NuclearGame nuclearGame) {
+
         super(nuclearGame);
+        gameScreen = new GameScreen(nuclearGame);
+        nuke = new NuclearGame();
         ui = new LevelsScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
 
@@ -35,18 +42,23 @@ public class LevelsScreen extends BaseScreen{
     ClickListener levelTwoButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            //if(levelsScreenui.level1.get)
+            nuke.comp2 = true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
+
         }
     };
     ClickListener levelThreeButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            nuke.comp3 = true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
         }
     };
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            nuke.comp4=true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
         }
     };

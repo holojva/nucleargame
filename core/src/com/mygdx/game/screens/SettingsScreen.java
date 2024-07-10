@@ -9,16 +9,16 @@ import com.mygdx.game.ui.SettingScreenUi;
 public class SettingsScreen extends BaseScreen {
 
     SettingScreenUi ui;
-
+    public boolean musicPosition = false;
+    public boolean soundPosition = true;
+    public boolean sound123 = true;
     public SettingsScreen(NuclearGame nuclearGame) {
         super(nuclearGame);
         ui = new SettingScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
 
-        ui.music.addListener(musicButtonClickedListener);
-        ui.musicSwitch.addListener(musicButtonClickedListener);
-        ui.soundSwitch.addListener(soundButtonClickedListener);
-        ui.sound.addListener(soundButtonClickedListener);
+        //ui.music1.addListener(musicButtonClickedListener);
+        //ui.sound1.addListener(soundButtonClickedListener);
         ui.exit.addListener(exitButtonClickedListener);
 
     }
@@ -28,16 +28,18 @@ public class SettingsScreen extends BaseScreen {
             nuclearGame.setScreen(nuclearGame.menuScreen);
         }
     };
-    ClickListener soundButtonClickedListener = new ClickListener() {
+    /*ClickListener soundButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-
+            nuclearGame.settingsScreen.ui.updateSwitchSound(!sound123);
+            sound123=!sound123;
         }
-    };
-    ClickListener musicButtonClickedListener = new ClickListener() {
+    };*/
+    /*ClickListener musicButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-
+            nuclearGame.settingsScreen.ui.updateSwitchMus(!musicPosition);
+           musicPosition=!musicPosition;
         }
-    };
+    };*/
 }

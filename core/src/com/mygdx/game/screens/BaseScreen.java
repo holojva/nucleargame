@@ -8,8 +8,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.NuclearGame;
 
 public class BaseScreen implements Screen {
-    Stage stage;
-    NuclearGame nuclearGame;
+    public Stage stage;
+    public NuclearGame nuclearGame;
 
     public BaseScreen(NuclearGame nuclearGame) {
         this.nuclearGame = nuclearGame;

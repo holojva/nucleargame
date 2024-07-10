@@ -6,11 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.ui.GameScreenUi;
 import com.mygdx.game.ui.components.Switch;
 
-public class GameScreen extends BaseScreen {
+public class GameScreen extends BaseScreen{
     GameScreenUi ui;
     long startTime;
 
@@ -24,12 +26,20 @@ public class GameScreen extends BaseScreen {
         super(nuclearGame);
         ui = new GameScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
+        stage.addListener(gameStopClickedListener);
 
         ui.SPOT.addListener(spotClickedListener);
         ui.battery.addListener(batteryClickedListener);
         //ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
     }
+    ClickListener gameStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            //nuclearGame.setScreen(nuclearGame.infoScreen12);
+        }
+    };
+
 
 
     ClickListener spotClickedListener = new ClickListener() {
