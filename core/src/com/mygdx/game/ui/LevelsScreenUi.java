@@ -73,10 +73,4 @@ public class LevelsScreenUi extends UiComponent {
     public void updateNpp2 (boolean comp){
         level2.setChecked(comp);
     }
-    public void updateNpp3 (boolean comp){
-        level3.setChecked(comp);
-    }
-    public void updateNpp4 (boolean comp){
-        level4.setChecked(comp);
-    }
 }

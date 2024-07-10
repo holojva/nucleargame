@@ -45,7 +45,6 @@ public class SettingScreenUi extends UiComponent {
         soundLabel = new Label("sound: ", skin);
 
         soundLabel.setAlignment(Align.left);
-
         root.setBackground(background.getDrawable());
         root.addActor(table);
         table.addActor(music);

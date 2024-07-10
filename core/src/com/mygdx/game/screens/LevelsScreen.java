@@ -10,8 +10,8 @@ public class LevelsScreen extends BaseScreen{
     public LevelsScreenUi ui;
     GameScreen gameScreen;
     NuclearGame nuke;
-
-
+    SettingsScreen settingsScreen;
+    LevelsScreenUi levelsScreenui;
     public LevelsScreen(NuclearGame nuclearGame) {
 
         super(nuclearGame);
@@ -42,6 +42,7 @@ public class LevelsScreen extends BaseScreen{
     ClickListener levelTwoButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            //if(levelsScreenui.level1.get)
             nuke.comp2 = true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
 
