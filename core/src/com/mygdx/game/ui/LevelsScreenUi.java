@@ -16,15 +16,16 @@ public class LevelsScreenUi extends UiComponent {
 
         Table table = new Table();
         Label title = new Label("Choose NPP", skin);
-        Image image = new Image(new Texture("skins/default/raw/white.png"));
-        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
-
-        level1 = new Button(image.getDrawable());
+        Image image = new Image(new Texture("nuke/nuke/nuclear3.png"));
+        Image level11 = new Image(new Texture("nuke/nuke/nuclear7.png"));
+        Image level22 = new Image(new Texture("nuke/nuke/nuclear7.png"));
+        Image level33 = new Image(new Texture("nuke/nuke/nuclear7.png"));
+        Image level44 = new Image(new Texture("nuke/nuke/nuclear7.png"));
+        level1 = new Button(level11.getDrawable());
         level2 = new Button(image.getDrawable());
         level3 = new Button(image.getDrawable());
         level4 = new Button(image.getDrawable());
         exit = new TextButton("Return", skin);
-
         root.setBackground(image.getDrawable());
 
         root.addActor(title);
@@ -35,7 +36,6 @@ public class LevelsScreenUi extends UiComponent {
         title.setSize(1000, 100);
 
         root.addActor(table);
-        table.setBackground(image1.getDrawable());
         table.setPosition(79, 370);
         table.setSize(1780, 420);
 
