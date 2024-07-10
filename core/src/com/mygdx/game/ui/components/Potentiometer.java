@@ -56,6 +56,10 @@ public class Potentiometer extends Actor {
         spinnerImage.draw(batch, parentAlpha);
     }
 
+    public double getValue() {
+        return (1 - (Math.toRadians(spinnerImage.getRotation()) - a) / (Math.PI * 2 - a * 2));
+    }
+
     private class PotentiometerInputLister extends InputListener {
 
         double touchInitialAngle;

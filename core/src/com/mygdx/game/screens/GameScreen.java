@@ -27,7 +27,7 @@ public class GameScreen extends BaseScreen {
 
         ui.SPOT.addListener(spotClickedListener);
         ui.battery.addListener(batteryClickedListener);
-        //ui.speedControl.addListener(speedControlClickedListener);
+        ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
     }
 
@@ -54,24 +54,30 @@ public class GameScreen extends BaseScreen {
 
     };
 
-    //    ClickListener speedControlClickedListener = new ClickListener() {
-//        @Override
-//        public void clicked(InputEvent event, float x, float y) {
-//            long fatigueStartTime = 300L;
-//            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-//                ui.fatigue.increase(7f);
-//            }
-//        }
-//
-//    };
+        ClickListener speedControlClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            long fatigueStartTime = 300L;
+            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
+                ui.fatigue.increaseValue(7f);
+            }
+        }
+
+    };
 
     ClickListener kernelsClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             long fatigueStartTime = 300L;
             if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.decreaseValue(7f);
+                ui.fatigue.increaseValue(7f);
             }
+            //if (ui.kernels.)
+
+
+
+            System.out.println(ui.kernels.getValue());
+
         }
 
     };
@@ -79,6 +85,15 @@ public class GameScreen extends BaseScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        float x = ui.kernels.getValue();
+        double y = ui.speedControl.getValue();
+        double z = Math.pow(x, 0.3) * 1 / Math.pow((y - 0.02), 0.1);
+
+       // ui.generatedPower.setCurrentValue(z);
+
+
+
+
         if (ui.SPOT.currentState == 1) {
             ui.closeToFail.decreaseValue(0.006f);
             ui.generatedPower.decreaseValue(0.006f);
@@ -87,7 +102,12 @@ public class GameScreen extends BaseScreen {
             ui.generatedPower.decreaseValue(0.4f);
             ui.batteryCharge.increaseValue(0.4f);
         }
-        if (ui.battery.currentState == 2) {
+        if (ui.battery.currentState == 1 && ui.batteryCharge.getCurrentValue() != 0) {
+                ui.generatedPower.decreaseValue(0.7f);
+                ui.batteryCharge.decreaseValue(0.7f);
+
+        }
+        if (ui.battery.currentState == 2 && ui.batteryCharge.getCurrentValue() != 0) {
             ui.generatedPower.increaseValue(0.7f);
             ui.batteryCharge.decreaseValue(0.4f);
         }

@@ -9,7 +9,7 @@ import com.mygdx.game.ui.components.*;
 public class GameScreenUi extends UiComponent{
     public Potentiometer speedControl;
     public TripleSwitch battery;
-    public OkSlider kernels;
+    public Slider kernels;
     public Switch SPOT;
     public PowerDisplay closeToFail;
     public PowerDisplay generatedPower;
@@ -18,7 +18,7 @@ public class GameScreenUi extends UiComponent{
     public GameScreenUi(Skin skin) {
         Image image = new Image(new Texture("Group 317.png"));
         battery = new TripleSwitch(skin);
-        kernels = new OkSlider(0, 100, 10, false, skin, 30);
+        kernels = new Slider(0, 1, 0.01f, false, skin);
         SPOT = new Switch(skin);
         //speedControl = new Potentiometer(skin);
         closeToFail = new PowerDisplay(0, 100, 80, 4);
@@ -29,7 +29,7 @@ public class GameScreenUi extends UiComponent{
         root.addActor(battery);
         root.addActor(kernels);
         kernels.setPosition(1250, 30);
-        kernels.setSize(480, 150);
+        kernels.setSize(550, 150);
         root.addActor(SPOT);
         root.addActor(closeToFail);
         closeToFail.setPosition(619, 402);
@@ -39,7 +39,7 @@ public class GameScreenUi extends UiComponent{
         generatedPower.setCurrentValue(30);
         root.addActor(batteryCharge);
         batteryCharge.setPosition(619, 292);
-        batteryCharge.setCurrentValue(30);
+        batteryCharge.setCurrentValue(0);
         root.addActor(fatigue);
         fatigue.setPosition(618, 228);
         fatigue.setCurrentValue(30);
