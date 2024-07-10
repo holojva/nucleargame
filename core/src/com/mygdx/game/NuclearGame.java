@@ -1,23 +1,20 @@
 package com.mygdx.game;
 
-import static com.mygdx.game.GameSettings.POSITION_ITERATIONS;
 import static com.mygdx.game.GameSettings.SCREEN_HEIGHT;
 import static com.mygdx.game.GameSettings.SCREEN_WIDTH;
 import static com.mygdx.game.GameSettings.SKIN_PATH;
-import static com.mygdx.game.GameSettings.STEP_TIME;
-import static com.mygdx.game.GameSettings.VELOCITY_ITERATIONS;
+import static com.mygdx.game.GameSettings.TextInfoScreenOne;
+import static com.mygdx.game.GameSettings.TextInfoScreenOneFinal;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.screens.*;
-import com.mygdx.game.ui.GameScreenUi;
+import com.mygdx.game.screens.infoScreens.InfoScreen;
+import com.mygdx.game.screens.infoScreens.InfoScreen12;
 
 public class NuclearGame extends Game {
 	public Skin skin;
@@ -29,7 +26,10 @@ public class NuclearGame extends Game {
 	public SettingsScreen settingsScreen;
 	public InfoScreen infoScreen;
 	public GameScreen gameScreen;
-
+	public InfoScreen12 infoScreen12;
+	public boolean comp2=false;
+	public boolean comp3=false;
+	public boolean comp4=false;
 
 	@Override
 	public void create () {
@@ -43,7 +43,8 @@ public class NuclearGame extends Game {
 		menuScreen = new MenuScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
-		infoScreen = new InfoScreen(this);
+		infoScreen = new InfoScreen(this, TextInfoScreenOne, "bilibino-npp");
+		infoScreen12 = new InfoScreen12(this, TextInfoScreenOneFinal, "bilibino-reactor");
 		gameScreen = new GameScreen(this);
 
 		setScreen(menuScreen);

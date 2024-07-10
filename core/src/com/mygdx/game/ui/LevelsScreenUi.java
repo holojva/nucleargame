@@ -7,22 +7,37 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class LevelsScreenUi extends UiComponent {
     public Button level1;
-    public Button level2;
-    public Button level3;
-    public Button level4;
+    public ImageButton level2;
+    public ImageButton level3;
+    public ImageButton level4;
     public Button exit;
+    ImageButton level;
 
     public LevelsScreenUi(Skin skin) {
-
         Table table = new Table();
         Label title = new Label("Choose NPP", skin);
-        Image image = new Image(new Texture("skins/default/raw/white.png"));
-        Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
+        Image image = new Image(skin,"levelscreen-bg");
+        Image level11 = new Image(skin,"obninsk-level-color");
+        level1 = new Button(level11.getDrawable());
+        level3 = new ImageButton(
+                new Image(skin, "beloyarsk-level-bw").getDrawable(),
+                new Image(skin, "beloyarsk-level-bw").getDrawable(),
+                new Image(skin, "beloyarsk-level-color").getDrawable()
+                );
+        // level = new ImageButton((skin,complete2 ? "bilibino-level-bw" : "bilibino-level-color");
+        level2 = new ImageButton(
+                new Image(skin, "bilibino-level-color").getDrawable(),
+                new Image(skin, "bilibino-level-color").getDrawable(),
+                new Image(skin, "bilibino-level-bw").getDrawable()
+        );
+        //level3 = new Button(level33.getDrawable());
+        level4 = new ImageButton(
+                new Image(skin, "chernobyl-level-bw").getDrawable(),
+                new Image(skin, "chernobyl-level-bw").getDrawable(),
+                new Image(skin, "chernobyl-level-color").getDrawable()
 
-        level1 = new Button(image.getDrawable());
-        level2 = new Button(image.getDrawable());
-        level3 = new Button(image.getDrawable());
-        level4 = new Button(image.getDrawable());
+        );
+        //level4 = new Button(level44.getDrawable());
         exit = new TextButton("Return", skin);
 
         root.setBackground(image.getDrawable());
@@ -35,7 +50,6 @@ public class LevelsScreenUi extends UiComponent {
         title.setSize(1000, 100);
 
         root.addActor(table);
-        table.setBackground(image1.getDrawable());
         table.setPosition(79, 370);
         table.setSize(1780, 420);
 
@@ -55,5 +69,14 @@ public class LevelsScreenUi extends UiComponent {
         root.addActor(exit);
         exit.setPosition(820, 120);
         exit.setSize(200, 100);
+    }
+    public void updateNpp2 (boolean comp){
+        level2.setChecked(comp);
+    }
+    public void updateNpp3 (boolean comp){
+        level3.setChecked(comp);
+    }
+    public void updateNpp4 (boolean comp){
+        level4.setChecked(comp);
     }
 }

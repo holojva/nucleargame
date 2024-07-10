@@ -6,7 +6,7 @@ public class GameSettings {
     public static final float STEP_TIME = 1f / 60f;
     public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 6;
-    public static final String SKIN_PATH = "skins/default/skin/uiskin.json";
+    public static final String SKIN_PATH = "nuke11beta/nuclear.json";
 
     // TextResources:
     public static final String TextInfoScreenOne = "On June 26, 1954, under the leadership of Igor Vasilyevich \n"
@@ -16,6 +16,7 @@ public class GameSettings {
             + "that nuclear energy can also be used to improve the quality \n"
             + "of human life. After the first steam was supplied to the turbine, \n"
             + "the workers congratulated each other: “Happy steam! »";
+
 
     public static final String TextInfoScreenOneFinal = "The reactor was shut down in 2002, but complete decommissioning of the nuclear power plant took another 13 years. As a result, the station operated for 48 years. Now it is equipped as a research complex.";
 
