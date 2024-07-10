@@ -32,11 +32,19 @@ public class GameScreen extends BaseScreen{
         ui.battery.addListener(batteryClickedListener);
         ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
+        ui.cheerUp.addListener(cheerUpStopClickedListener);
     }
     ClickListener gameStopClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             //nuclearGame.setScreen(nuclearGame.infoScreen12);
+        }
+    };
+
+    ClickListener cheerUpStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            nuclearGame.setScreen(nuclearGame.sparklingWaterScreen);
         }
     };
 
@@ -47,7 +55,7 @@ public class GameScreen extends BaseScreen{
         public void clicked(InputEvent event, float x, float y) {
             long fatigueStartTime = 300L;
             if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(7f);
+                ui.fatigue.increaseValue(0.007f);
             }
         }
 
@@ -58,7 +66,7 @@ public class GameScreen extends BaseScreen{
         public void clicked(InputEvent event, float x, float y) {
             long fatigueStartTime = 300L;
             if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(7f);
+                ui.fatigue.increaseValue(0.007f);
             }
         }
 
@@ -69,7 +77,7 @@ public class GameScreen extends BaseScreen{
         public void clicked(InputEvent event, float x, float y) {
             long fatigueStartTime = 300L;
             if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(7f);
+                ui.fatigue.increaseValue(0.007f);
             }
         }
 
@@ -80,7 +88,7 @@ public class GameScreen extends BaseScreen{
         public void clicked(InputEvent event, float x, float y) {
             long fatigueStartTime = 300L;
             if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(7f);
+                ui.fatigue.increaseValue(0.007f);
             }
             //if (ui.kernels.)
 
@@ -94,10 +102,10 @@ public class GameScreen extends BaseScreen{
     public void render(float delta) {
         super.render(delta);
         float x = ui.kernels.getValue();
-        //float y = (float) ui.speedControl.getValue();
-        //float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow((y - 0.02), 0.1));
+        float y = (float) ui.speedControl.getValue();
+        float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow((y - 0.02), 0.1));
 
-       // ui.generatedPower.setCurrentValue(z);
+        ui.generatedPower.setCurrentValue(z);
 
 
 
@@ -107,23 +115,23 @@ public class GameScreen extends BaseScreen{
             ui.generatedPower.decreaseValue(0.006f);
         }
         if (ui.battery.currentState == 0) {
-            ui.generatedPower.decreaseValue(0.4f);
-            ui.batteryCharge.increaseValue(0.4f);
+            ui.generatedPower.decreaseValue(0.004f);
+            ui.batteryCharge.increaseValue(0.0004f);
         }
         if (ui.battery.currentState == 1 && ui.batteryCharge.getCurrentValue() != 0) {
-                ui.generatedPower.decreaseValue(0.7f);
-                ui.batteryCharge.decreaseValue(0.7f);
+                ui.generatedPower.decreaseValue(0.0007f);
+                ui.batteryCharge.decreaseValue(0.007f);
 
         }
         if (ui.battery.currentState == 2 && ui.batteryCharge.getCurrentValue() != 0) {
-            ui.generatedPower.increaseValue(0.7f);
-            ui.batteryCharge.decreaseValue(0.4f);
+            ui.generatedPower.increaseValue(0.007f);
+            ui.batteryCharge.decreaseValue(0.004f);
         }
         ui.generatedPower.increaseValue(0.006f);
         if (ui.generatedPower.getCurrentValue() < (ui.generatedPower.getIdealValue() - ui.generatedPower.getInaccuracy())
                 || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy()))
         {
-            ui.closeToFail.increaseValue(0.05f);
+            ui.closeToFail.increaseValue(0.0005f);
         }
 
 

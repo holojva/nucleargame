@@ -30,6 +30,7 @@ public class NuclearGame extends Game {
 	public boolean comp2=false;
 	public boolean comp3=false;
 	public boolean comp4=false;
+	public SparklingWaterScreen sparklingWaterScreen;
 
 	@Override
 	public void create () {
@@ -46,6 +47,7 @@ public class NuclearGame extends Game {
 		infoScreen = new InfoScreen(this, TextInfoScreenOne, "bilibino-npp");
 		infoScreen12 = new InfoScreen12(this, TextInfoScreenOneFinal, "bilibino-reactor");
 		gameScreen = new GameScreen(this);
+		sparklingWaterScreen = new SparklingWaterScreen(this);
 
 		setScreen(menuScreen);
 

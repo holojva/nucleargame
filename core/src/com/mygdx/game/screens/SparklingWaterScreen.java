@@ -8,5 +8,7 @@ public class SparklingWaterScreen extends BaseScreen {
         super(nuclearGame);
         ui = new SparklingWaterScreenUi(nuclearGame.skin);
 
+        stage.addActor(ui.root);
+
     }
 }
