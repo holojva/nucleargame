@@ -15,7 +15,7 @@ public class SettingScreenUi extends UiComponent {
     public Label soundLabel;
     public ImageButton music1;
     public ImageButton sound1;
-
+    public Label exitLabel;
     public SettingScreenUi(Skin skin) {
 
         Image background = new Image(skin, "settingsscreen-bg");
@@ -42,6 +42,7 @@ public class SettingScreenUi extends UiComponent {
 
         musicLabel = new Label("music: ", skin, "molot-font", Color.BLACK);
         soundLabel = new Label("sound: ", skin, "molot-font", Color.BLACK);
+        exitLabel = new Label("return", skin, "molot-font", Color.BLACK);
         soundLabel.setAlignment(Align.left);
         root.setBackground(background.getDrawable());
         root.addActor(table);
@@ -50,13 +51,13 @@ public class SettingScreenUi extends UiComponent {
         music.setSize(360, 80);
         music.addActor(musicLabel);
         musicLabel.setAlignment(Align.left);
-        musicLabel.setPosition(20, 24);
+        musicLabel.setPosition(20, 15);
         table.addActor(sound);
         sound.setPosition(57, 284);
         sound.setSize(360, 80);
         sound.addActor(soundLabel);
         soundLabel.setAlignment(Align.left);
-        soundLabel.setPosition(20, 24);
+        soundLabel.setPosition(20, 15);
         music.addActor(music1);
         music1.setPosition(255, 5);
         music1.setSize(90, 70);
@@ -66,6 +67,9 @@ public class SettingScreenUi extends UiComponent {
         table.addActor(exit);
         exit.setPosition(44, 120);
         exit.setSize(385, 60);
+        table.addActor(exitLabel);
+        exitLabel.setPosition(170, 120);
+        exitLabel.setSize(385, 60);
     }
 
     public void updateSwitchMus(boolean comp1) {

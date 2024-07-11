@@ -171,6 +171,13 @@ public class GameScreen extends BaseScreen{
             ui.closeToFail.increaseValue(0.00006f);
         }
 
+        if (ui.battery.currentState == 1) {
+            ui.batteryImage.getColor().a = 0;
+        }
+        if (ui.battery.currentState != 1) {
+            ui.batteryImage.getColor().a = 1;
+        }
+
         if (ui.closeToFail.getCurrentValue() == 1) loos = true;
 
         if (TimeUtils.millis() - startTime == 24000L && !loos) {
@@ -183,8 +190,12 @@ public class GameScreen extends BaseScreen{
 
         if (ui.fatigue.getCurrentValue() < 0.7) {
             ui.cheerUp.getColor().a = 0;
+            ui.cheerUp.setDisabled(false);
         }
-        else ui.cheerUp.getColor().a = 1;
+        else {
+            ui.cheerUp.getColor().a = 1;
+            ui.cheerUp.setDisabled(true);
+        }
 
 
         if (ui.kernels.getValue() < 0.3) ui.kernelses.setPosition(75, 653);
@@ -215,7 +226,10 @@ public class GameScreen extends BaseScreen{
 
     private void sleeping(float delta) {
         accumulator += delta;
-        if (accumulator < sleepTime) stage.addActor(ui.blackout);
+        if (accumulator < sleepTime) {
+            stage.addActor(ui.blackout);
+            ui.blackout.setSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
+        }
         else accumulator -= sleepTime;
     }
 }

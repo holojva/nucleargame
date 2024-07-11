@@ -13,7 +13,7 @@ public class SettingsScreen extends BaseScreen {
         super(nuclearGame);
         ui = new SettingScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
-        ui.exit.addListener(exitButtonClickedListener);
+        ui.exitLabel.addListener(exitButtonClickedListener);
 
     }
 

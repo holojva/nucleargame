@@ -38,9 +38,9 @@ public class MenuScreenUi extends UiComponent {
         startButton = new Button( skin, "whitebutton");
         settingsButton = new Button (skin, "whitebutton");
         exitButton = new Button(skin, "whitebutton");
-        start = new Label("Start", skin);
-        settings = new Label("Settings", skin);
-        exit = new Label("Exit", skin);
+        start = new Label("Start", skin,"molot-font", Color.BLACK);
+        settings = new Label("Settings", skin,"molot-font", Color.BLACK);
+        exit = new Label("Exit", skin,"molot-font", Color.BLACK);
 
         table.add(startButton).width(400).height(90).pad(10).space(40);
         startButton.add(start);

@@ -29,7 +29,7 @@ public class LevelsScreen extends BaseScreen {
         ui = new LevelsScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
 
-        ui.exit.addListener(exitButtonClickedListener);
+        ui.exitLabel.addListener(exitButtonClickedListener);
         ui.level1.addListener(levelOneButtonClickedListener);
         ui.level2.addListener(levelTwoButtonClickedListener);
         ui.level3.addListener(levelThreeButtonClickedListener);
