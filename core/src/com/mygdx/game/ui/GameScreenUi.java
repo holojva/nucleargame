@@ -39,7 +39,6 @@ public class GameScreenUi extends UiComponent{
 
 
     public GameScreenUi(Skin skin) {
-
         Image image = new Image(skin, "gamescreen-bg");
         blackout = new Image(skin,  "blackout");
         battery = new TripleSwitch(skin);
@@ -111,9 +110,9 @@ public class GameScreenUi extends UiComponent{
         infoLabel.setAlignment(Align.center);
         tutorialLabel.setAlignment(Align.center);
         pauseLabel.setAlignment(Align.center);
-        pauseLabel.setPosition(70, 35);
-        tutorialLabel.setPosition(55, 35);
-        infoLabel.setPosition(80, 35);
+        pauseLabel.setPosition(45, 23);
+        tutorialLabel.setPosition(15, 25);
+        infoLabel.setPosition(65, 23);
         tutorial.setPosition(1450, 950);
         tutorial.setSize(200, 90);
         root.addActor(pause);

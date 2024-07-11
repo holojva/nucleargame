@@ -25,11 +25,16 @@ public class MenuScreenUi extends UiComponent {
     public Table table;
 
     public MenuScreenUi(Skin skin) {
-
+        Label title = new Label("Simulator NPP", skin, "molot-font", Color.BLACK);
         Image image = new Image(skin, "menuscreen-bg");
         table = new Table();
 
-
+        root.addActor(title);
+        title.setAlignment(Align.right);
+        title.setFontScale(2.5f);
+        title.setColor(Color.BLACK);
+        title.setPosition(420, 900);
+        title.setSize(1000, 100);
         root.setBackground(image.getDrawable());
         root.addActor(table);
         table.setPosition(1300, 30);
