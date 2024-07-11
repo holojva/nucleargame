@@ -1,9 +1,10 @@
 package com.mygdx.game.screens;
-
+import com.badlogic.gdx.Gdx;
 import static com.mygdx.game.GameSettings.TextInfoScreenOne;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.AudioManager;
 import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.managers.MemoryManager;
@@ -15,6 +16,8 @@ public class LevelsScreen extends BaseScreen {
     public LevelsScreenUi ui;
     GameScreen gameScreen;
     NuclearGame nuke;
+    SettingsScreen settingsScreen;
+    LevelsScreenUi levelsScreenui;
     public static InfoScreen12 infoScreen12;
 
     public InfoScreen infoScreen;
@@ -47,11 +50,14 @@ public class LevelsScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.menuScreen);
+            AudioManager.playMusic(AudioManager.startScreenBackgroundMusic);
         }
     };
     ClickListener levelOneButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            nuclearGame.setScreen(nuclearGame.infoScreen);
+            AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             nuclearGame.gameScreen.setCurrentLevel(1);
             infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
             infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
@@ -61,6 +67,11 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelTwoButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            //if(levelsScreenui.level1.get)
+            nuke.comp2 = true;
+            nuclearGame.setScreen(nuclearGame.infoScreen);
+            AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
+
             if (MemoryManager.loadPassedLevel() >= 1) {
                 nuclearGame.gameScreen.setCurrentLevel(2);
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
@@ -72,6 +83,9 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelThreeButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            nuke.comp3 = true;
+            nuclearGame.setScreen(nuclearGame.infoScreen);
+            AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 2) {
                 nuclearGame.gameScreen.setCurrentLevel(3);
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
@@ -83,6 +97,9 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            nuke.comp4=true;
+            nuclearGame.setScreen(nuclearGame.infoScreen);
+            AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 3) {
                 nuclearGame.gameScreen.setCurrentLevel(4);
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());

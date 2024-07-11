@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.AudioManager;
 import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.managers.MemoryManager;
@@ -62,6 +63,7 @@ public class GameScreen extends BaseScreen{
         ui.kernels.addListener(kernelsClickedListener);
         ui.cheerUp.addListener(cheerUpStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
+
     }
 
 
@@ -93,6 +95,7 @@ public class GameScreen extends BaseScreen{
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.sparklingWaterScreen);
+            AudioManager.playMusic(AudioManager.coffeeScreenBackgroundMusic);
         }
     };
 

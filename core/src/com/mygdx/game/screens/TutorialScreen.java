@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.AudioManager;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.ui.TutorialScreenUi;
 
@@ -13,6 +14,7 @@ public class TutorialScreen extends BaseScreen {
         ui = new TutorialScreenUi(nuclearGame.skin);
         stage.addActor(ui);
         stage.addListener(tutorialClickedListener);
+
     }
 
     ClickListener tutorialClickedListener = new ClickListener() {
