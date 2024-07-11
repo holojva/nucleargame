@@ -68,7 +68,6 @@ public class LevelsScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             //if(levelsScreenui.level1.get)
-            nuke.comp2 = true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
 
@@ -83,7 +82,6 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelThreeButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuke.comp3 = true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 2) {
@@ -97,7 +95,6 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuke.comp4=true;
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 3) {
