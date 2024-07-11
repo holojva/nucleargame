@@ -8,8 +8,7 @@ import com.mygdx.game.ui.GameScreenUi;
 
 public class GameScreen extends BaseScreen{
 
-    private int currentLevel;
-
+    public static int currentLevel;
     GameScreenUi ui;
     public GameScreen(NuclearGame nuclearGame) {
         super(nuclearGame);
@@ -23,18 +22,23 @@ public class GameScreen extends BaseScreen{
         this.currentLevel = currentLevel;
     }
 
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
     private void endGame() {
         int maxLevel = MemoryManager.loadPassedLevel();
         if (maxLevel < currentLevel) {
-            MemoryManager.savePassedLevel(currentLevel);
+            MemoryManager. savePassedLevel(currentLevel);
         }
     }
 
     ClickListener gameStopClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            System.out.println("+++++++++++++++++++");
+        nuclearGame.setScreen(LevelsScreen.infoScreen12);
         endGame();
-        nuclearGame.setScreen(nuclearGame.infoScreen12);
         }
     };
 }

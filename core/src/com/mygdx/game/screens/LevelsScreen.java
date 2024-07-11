@@ -2,14 +2,13 @@ package com.mygdx.game.screens;
 
 import static com.mygdx.game.GameSettings.TextInfoScreenOne;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.managers.MemoryManager;
+import com.mygdx.game.screens.infoScreens.InfoScreen;
 import com.mygdx.game.screens.infoScreens.InfoScreen12;
-import com.mygdx.game.ui.InfoScreenUi1;
 import com.mygdx.game.ui.LevelsScreenUi;
 
 public class LevelsScreen extends BaseScreen {
@@ -18,7 +17,9 @@ public class LevelsScreen extends BaseScreen {
     NuclearGame nuke;
     SettingsScreen settingsScreen;
     LevelsScreenUi levelsScreenui;
-    InfoScreen12 infoScreen12;
+    public static InfoScreen12 infoScreen12;
+
+    public InfoScreen infoScreen;
 
     public LevelsScreen(NuclearGame nuclearGame) {
 
@@ -54,7 +55,9 @@ public class LevelsScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.gameScreen.setCurrentLevel(1);
-            nuclearGame.setScreen(nuclearGame.infoScreen);
+            infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+            infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+            nuclearGame.setScreen(infoScreen);
         }
     };
     ClickListener levelTwoButtonClickedListener = new ClickListener() {
@@ -62,7 +65,9 @@ public class LevelsScreen extends BaseScreen {
         public void clicked(InputEvent event, float x, float y) {
             if (MemoryManager.loadPassedLevel() >= 1) {
                 nuclearGame.gameScreen.setCurrentLevel(2);
-                nuclearGame.setScreen(nuclearGame.infoScreen);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
                 // nuke.comp2 = true;
             }
         }
@@ -72,7 +77,9 @@ public class LevelsScreen extends BaseScreen {
         public void clicked(InputEvent event, float x, float y) {
             if (MemoryManager.loadPassedLevel() >= 2) {
                 nuclearGame.gameScreen.setCurrentLevel(3);
-                nuclearGame.setScreen(nuclearGame.infoScreen);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
                 // nuke.comp3 = true;
             }
         }
@@ -80,10 +87,12 @@ public class LevelsScreen extends BaseScreen {
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            System.out.println("here");
+            //System.out.println("here");
             if (MemoryManager.loadPassedLevel() >= 3) {
                 nuclearGame.gameScreen.setCurrentLevel(4);
-                nuclearGame.setScreen(nuclearGame.infoScreen);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
                 // nuke.comp4 = true;
             }
         }
@@ -102,4 +111,75 @@ public class LevelsScreen extends BaseScreen {
                 ui.updateNpp2(true);
         }
     }
+    public String textInfo(){
+        System.out.println(nuclearGame.gameScreen.getCurrentLevel());
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                System.out.println("loadPassedLevel: 1");
+                return GameSettings.TextInfoScreenOne;
+            case 2:
+                System.out.println("loadPassedLevel: 2");
+                return GameSettings.TextInfoScreenTwo;
+            case 3:
+                System.out.println("loadPassedLevel: 3");
+                return GameSettings.TextInfoScreenThree;
+            case 4:
+                System.out.println("loadPassedLevel: 4");
+                return GameSettings.TextInfoScreenFour;
+            default:
+                System.out.println();
+                return GameSettings.Err;
+        }
+//		System.out.println("current lvl: " + GameScreen.currentLevel);
+    }
+    public String textInfoFinal(){
+        System.out.println(nuclearGame.gameScreen.getCurrentLevel());
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                System.out.println("loadPassedLevel: 1");
+                return GameSettings.TextInfoScreenOneFinal;
+            case 2:
+                System.out.println("loadPassedLevel: 2");
+                return GameSettings.TextInfoScreenTwoFinal;
+            case 3:
+                System.out.println("loadPassedLevel: 3");
+                return GameSettings.TextInfoScreenThreeFinal;
+            case 4:
+                System.out.println("loadPassedLevel: 4");
+                return GameSettings.TextInfoScreenFourFinal;
+            default:
+                System.out.println();
+                return GameSettings.Err;
+        }
+//		System.out.println("current lvl: " + GameScreen.currentLevel);
+    }
+
+    public String pictureInfo(){
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                return "obninsk-npp";
+            case 2:
+                return "beloyarsk-npp";
+            case 3:
+                return "bilibino-npp";
+
+            default:
+                return "chernobyl-npp";
+        }
+    }
+    public String pictureInfoFinal(){
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                return "obninsk-reactor";
+            case 2:
+                return "beloyarsk-reactor";
+            case 3:
+                return "bilibino-reactor";
+
+            default:
+                return "chernobyl-reactor";
+        }
+    }
 }
+
+

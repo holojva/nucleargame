@@ -16,7 +16,7 @@ public class InfoScreen12 extends BaseScreen {
 
     public InfoScreen12(NuclearGame nuclearGame, String text, String skin) {
         super(nuclearGame);
-        ui = new InfoScreenUi1(nuclearGame.skin, skin, gameSettings.TextInfoScreenOneFinal);
+        ui = new InfoScreenUi1(nuclearGame.skin, skin, text);
         stage.addActor(ui.root);
         stage.addListener(gameStartClickedListener);
     }

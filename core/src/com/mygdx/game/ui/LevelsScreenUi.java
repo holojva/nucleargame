@@ -74,14 +74,14 @@ public class LevelsScreenUi extends UiComponent {
     public void updateNpp3(boolean comp) {
         // level3.setChecked(comp);
         level3.setDrawable(new Image(
-                skin, comp ? "bilibino-level-bw" : "bilibino-level-color").getDrawable()
+                skin, comp ? "beloyarsk-level-color" : "beloyarsk-level-bw").getDrawable()
         );
     }
 
     public void updateNpp4(boolean comp) {
         // level4.setChecked(comp);
         level4.setDrawable(new Image(
-                skin, comp ? "bilibino-level-bw" : "bilibino-level-color").getDrawable()
+                skin, comp ? "chernobyl-level-color" : "chernobyl-level-bw").getDrawable()
         );
     }
 }
