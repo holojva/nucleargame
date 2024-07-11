@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.ui.components.*;
 
 public class GameScreenUi extends UiComponent{
@@ -22,10 +23,16 @@ public class GameScreenUi extends UiComponent{
     public PowerDisplay fatigue;
     public Label fatigueLabel;
     public Label cheerUpLabel;
+    public Button cheerUp;
+    public Button pause;
+    public Button info;
+    public Button tutorial;
+    public Label pauseLabel;
+    public Label infoLabel;
+    public Label tutorialLabel;
     public EnergyChart energyChart;
     public Image kernelses;
     public Scheme scheme;
-    public Button cheerUp;
     public Label date;
     public Label time;
     public Image batteryImage;
@@ -53,6 +60,13 @@ public class GameScreenUi extends UiComponent{
         fatigueLabel = new Label("Fatigue",  skin, "molot-font", Color.BLACK);
         energyChart = new EnergyChart(skin);
         cheerUpLabel = new Label("Cheer Up", skin, "molot-font", Color.BLACK);
+        pauseLabel = new Label("Pause", skin, "molot-font", Color.BLACK);
+        tutorialLabel = new Label("Tutorial", skin, "molot-font", Color.BLACK);
+        infoLabel = new Label("Info", skin, "molot-font", Color.BLACK);
+        cheerUp = new Button(skin, "biggraybutton");
+        pause = new Button(skin, "graybutton");
+        tutorial = new Button(skin, "graybutton");
+        info = new Button(skin, "graybutton");
         kernelses = new Image(skin, "kernels");
         scheme = new Scheme(skin);
 
@@ -84,6 +98,24 @@ public class GameScreenUi extends UiComponent{
         cheerUp.setPosition(1230, 310);
         cheerUp.setSize(670, 90);
         cheerUp.add(cheerUpLabel);
+        root.addActor(info);
+        info.setPosition(1230, 950);
+        info.setSize(200, 90);
+        root.addActor(tutorial);
+        tutorial.addActor(tutorialLabel);
+        pause.addActor(pauseLabel);
+        info.addActor(infoLabel);
+        infoLabel.setAlignment(Align.center);
+        tutorialLabel.setAlignment(Align.center);
+        pauseLabel.setAlignment(Align.center);
+        pauseLabel.setPosition(70, 35);
+        tutorialLabel.setPosition(55, 35);
+        infoLabel.setPosition(80, 35);
+        tutorial.setPosition(1450, 950);
+        tutorial.setSize(200, 90);
+        root.addActor(pause);
+        pause.setPosition(1670, 950);
+        pause.setSize(200, 90);
         root.addActor(energyChart);
         energyChart.setSize(700, 490);
         energyChart.setPosition(879, 520);

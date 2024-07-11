@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.AudioManager;
 import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
 import com.mygdx.game.managers.MemoryManager;
@@ -61,7 +62,11 @@ public class GameScreen extends BaseScreen{
         ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
         ui.cheerUp.addListener(cheerUpStopClickedListener);
+        ui.pause.addListener(pauseStopClickedListener);
+        ui.tutorial.addListener(tutorialStopClickedListener);
+        ui.info.addListener(infoStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
+
     }
 
 
@@ -81,11 +86,25 @@ public class GameScreen extends BaseScreen{
         }
     }
 
-    ClickListener gameStopClickedListener = new ClickListener() {
+    ClickListener infoStopClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuclearGame.setScreen(LevelsScreen.infoScreen12);
+            nuclearGame.setScreen(LevelsScreen.infoScreen);
         endGame();
+        }
+    };
+    ClickListener tutorialStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            //nuclearGame.setScreen(nuclearGame.);
+            endGame();
+        }
+    };
+    ClickListener pauseStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            //nuclearGame.setScreen(LevelsScreen.pauseScreen);
+            endGame();
         }
     };
 
@@ -93,6 +112,7 @@ public class GameScreen extends BaseScreen{
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.sparklingWaterScreen);
+            AudioManager.playMusic(AudioManager.coffeeScreenBackgroundMusic);
         }
     };
 
