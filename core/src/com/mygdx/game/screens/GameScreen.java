@@ -15,6 +15,7 @@ import com.mygdx.game.ui.components.Switch;
 public class GameScreen extends BaseScreen{
     GameScreenUi ui;
     long startTime;
+    float profit;
 
     @Override
     public void show() {
@@ -27,6 +28,8 @@ public class GameScreen extends BaseScreen{
         ui = new GameScreenUi(nuclearGame.skin);
         stage.addActor(ui.root);
         stage.addListener(gameStopClickedListener);
+        profit = 0;
+
 
         ui.SPOT.addListener(spotClickedListener);
         ui.battery.addListener(batteryClickedListener);
@@ -53,10 +56,7 @@ public class GameScreen extends BaseScreen{
     ClickListener spotClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            long fatigueStartTime = 300L;
-            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(0.007f);
-            }
+            passiveFatigue();
         }
 
     };
@@ -64,10 +64,7 @@ public class GameScreen extends BaseScreen{
     ClickListener batteryClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            long fatigueStartTime = 300L;
-            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(0.007f);
-            }
+           passiveFatigue();
         }
 
     };
@@ -75,10 +72,7 @@ public class GameScreen extends BaseScreen{
         ClickListener speedControlClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            long fatigueStartTime = 300L;
-            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(0.007f);
-            }
+            passiveFatigue();
         }
 
     };
@@ -86,16 +80,8 @@ public class GameScreen extends BaseScreen{
     ClickListener kernelsClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            long fatigueStartTime = 300L;
-            if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-                ui.fatigue.increaseValue(0.007f);
-            }
-            //if (ui.kernels.)
-
-
-
+            passiveFatigue();
         }
-
     };
 
     @Override
@@ -110,31 +96,42 @@ public class GameScreen extends BaseScreen{
 
 
 
-        if (ui.SPOT.currentState == 1) {
-            ui.closeToFail.decreaseValue(0.006f);
-            ui.generatedPower.decreaseValue(0.006f);
-        }
-        if (ui.battery.currentState == 0) {
-            ui.generatedPower.decreaseValue(0.004f);
-            ui.batteryCharge.increaseValue(0.0004f);
-        }
-        if (ui.battery.currentState == 1 && ui.batteryCharge.getCurrentValue() != 0) {
-                ui.generatedPower.decreaseValue(0.0007f);
-                ui.batteryCharge.decreaseValue(0.007f);
 
+        if (ui.SPOT.currentState == 1) {
+            ui.closeToFail.decreaseValue(0.06f);
+            ui.generatedPower.decreaseValue(0.06f);
         }
+        if (ui.battery.currentState == 0 && ui.batteryCharge.getCurrentValue() != 1) {
+            ui.generatedPower.decreaseValue(0.004f);
+            ui.batteryCharge.increaseValue(0.004f);
+        }
+        if (ui.battery.currentState == 1) {
+            ui.generatedPower.increaseValue(profit);
+            profit = 0;
+        }
+
         if (ui.battery.currentState == 2 && ui.batteryCharge.getCurrentValue() != 0) {
+            float startCharge = ui.batteryCharge.getCurrentValue();
             ui.generatedPower.increaseValue(0.007f);
             ui.batteryCharge.decreaseValue(0.004f);
+            profit = ui.batteryCharge.getCurrentValue() - startCharge;
         }
-        ui.generatedPower.increaseValue(0.006f);
+
+        ui.generatedPower.increaseValue(0.68f);
+
         if (ui.generatedPower.getCurrentValue() < (ui.generatedPower.getIdealValue() - ui.generatedPower.getInaccuracy())
                 || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy()))
         {
-            ui.closeToFail.increaseValue(0.0005f);
+            ui.closeToFail.increaseValue(0.005f);
         }
 
+    }
 
+    private void passiveFatigue(){
+        long fatigueStartTime = 60000L;
+        if (TimeUtils.millis() - startTime >= fatigueStartTime) {
+            ui.fatigue.increaseValue(0.007f);
+        }
     }
 }
 
