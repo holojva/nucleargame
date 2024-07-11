@@ -1,20 +1,31 @@
 package com.mygdx.game.screens;
 
-import com.badlogic.gdx.Gdx;
+import static com.mygdx.game.GameSettings.TextInfoScreenOne;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
+import com.mygdx.game.managers.MemoryManager;
+import com.mygdx.game.screens.infoScreens.InfoScreen;
+import com.mygdx.game.screens.infoScreens.InfoScreen12;
 import com.mygdx.game.ui.LevelsScreenUi;
 
-public class LevelsScreen extends BaseScreen{
+public class LevelsScreen extends BaseScreen {
     public LevelsScreenUi ui;
     GameScreen gameScreen;
     NuclearGame nuke;
     SettingsScreen settingsScreen;
     LevelsScreenUi levelsScreenui;
+    public static InfoScreen12 infoScreen12;
+
+    public InfoScreen infoScreen;
+
     public LevelsScreen(NuclearGame nuclearGame) {
 
+
         super(nuclearGame);
+        infoScreen12 = new InfoScreen12(nuclearGame, TextInfoScreenOne, "menuscreen-bg");
         gameScreen = new GameScreen(nuclearGame);
         nuke = new NuclearGame();
         ui = new LevelsScreenUi(nuclearGame.skin);
@@ -27,6 +38,13 @@ public class LevelsScreen extends BaseScreen{
         ui.level4.addListener(levelFourButtonClickedListener);
     }
 
+    @Override
+    public void show() {
+        super.show();
+        updateLevelsButton();
+
+    }
+
     ClickListener exitButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
@@ -36,30 +54,132 @@ public class LevelsScreen extends BaseScreen{
     ClickListener levelOneButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuclearGame.setScreen(nuclearGame.infoScreen);
+            nuclearGame.gameScreen.setCurrentLevel(1);
+            infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+            infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+            nuclearGame.setScreen(infoScreen);
         }
     };
     ClickListener levelTwoButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            //if(levelsScreenui.level1.get)
-            nuke.comp2 = true;
-            nuclearGame.setScreen(nuclearGame.infoScreen);
-
+            if (MemoryManager.loadPassedLevel() >= 1) {
+                nuclearGame.gameScreen.setCurrentLevel(2);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
+                // nuke.comp2 = true;
+            }
         }
     };
     ClickListener levelThreeButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuke.comp3 = true;
-            nuclearGame.setScreen(nuclearGame.infoScreen);
+            if (MemoryManager.loadPassedLevel() >= 2) {
+                nuclearGame.gameScreen.setCurrentLevel(3);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
+                // nuke.comp3 = true;
+            }
         }
     };
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuke.comp4=true;
-            nuclearGame.setScreen(nuclearGame.infoScreen);
+            //System.out.println("here");
+            if (MemoryManager.loadPassedLevel() >= 3) {
+                nuclearGame.gameScreen.setCurrentLevel(4);
+                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
+                nuclearGame.setScreen(infoScreen);
+                // nuke.comp4 = true;
+            }
         }
     };
+
+    private void updateLevelsButton() {
+        int passedLevel = MemoryManager.loadPassedLevel();
+        System.out.println("passed level: "  + passedLevel );
+        switch (passedLevel) {
+            case 4:
+            case 3:
+                ui.updateNpp4(true);
+            case 2:
+                ui.updateNpp3(true);
+            case 1:
+                ui.updateNpp2(true);
+        }
+    }
+    public String textInfo(){
+        System.out.println(nuclearGame.gameScreen.getCurrentLevel());
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                System.out.println("loadPassedLevel: 1");
+                return GameSettings.TextInfoScreenOne;
+            case 2:
+                System.out.println("loadPassedLevel: 2");
+                return GameSettings.TextInfoScreenTwo;
+            case 3:
+                System.out.println("loadPassedLevel: 3");
+                return GameSettings.TextInfoScreenThree;
+            case 4:
+                System.out.println("loadPassedLevel: 4");
+                return GameSettings.TextInfoScreenFour;
+            default:
+                System.out.println();
+                return GameSettings.Err;
+        }
+//		System.out.println("current lvl: " + GameScreen.currentLevel);
+    }
+    public String textInfoFinal(){
+        System.out.println(nuclearGame.gameScreen.getCurrentLevel());
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                System.out.println("loadPassedLevel: 1");
+                return GameSettings.TextInfoScreenOneFinal;
+            case 2:
+                System.out.println("loadPassedLevel: 2");
+                return GameSettings.TextInfoScreenTwoFinal;
+            case 3:
+                System.out.println("loadPassedLevel: 3");
+                return GameSettings.TextInfoScreenThreeFinal;
+            case 4:
+                System.out.println("loadPassedLevel: 4");
+                return GameSettings.TextInfoScreenFourFinal;
+            default:
+                System.out.println();
+                return GameSettings.Err;
+        }
+//		System.out.println("current lvl: " + GameScreen.currentLevel);
+    }
+
+    public String pictureInfo(){
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                return "obninsk-npp";
+            case 2:
+                return "beloyarsk-npp";
+            case 3:
+                return "bilibino-npp";
+
+            default:
+                return "chernobyl-npp";
+        }
+    }
+    public String pictureInfoFinal(){
+        switch (nuclearGame.gameScreen.getCurrentLevel()){
+            case 1:
+                return "obninsk-reactor";
+            case 2:
+                return "beloyarsk-reactor";
+            case 3:
+                return "bilibino-reactor";
+
+            default:
+                return "chernobyl-reactor";
+        }
+    }
 }
+
+

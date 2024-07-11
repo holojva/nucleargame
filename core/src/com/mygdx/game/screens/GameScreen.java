@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.GameSettings;
 import com.mygdx.game.NuclearGame;
+import com.mygdx.game.managers.MemoryManager;
 import com.mygdx.game.ui.GameScreenUi;
 import com.mygdx.game.ui.components.ChartValues;
 import com.mygdx.game.ui.components.Switch;
@@ -17,7 +18,9 @@ import com.mygdx.game.ui.components.Switch;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class GameScreen extends BaseScreen {
+public class GameScreen extends BaseScreen{
+
+    public static int currentLevel;
     GameScreenUi ui;
     long startTime;
     float profit;
@@ -60,6 +63,31 @@ public class GameScreen extends BaseScreen {
         ui.cheerUp.addListener(cheerUpStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
     }
+
+
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    private void endGame() {
+        int maxLevel = MemoryManager.loadPassedLevel();
+        if (maxLevel < currentLevel) {
+            MemoryManager. savePassedLevel(currentLevel);
+        }
+    }
+
+    ClickListener gameStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+        nuclearGame.setScreen(LevelsScreen.infoScreen12);
+        endGame();
+        }
+    };
 
     ClickListener cheerUpStopClickedListener = new ClickListener() {
         @Override

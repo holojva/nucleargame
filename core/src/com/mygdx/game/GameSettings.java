@@ -14,11 +14,32 @@ public class GameSettings {
             + "that nuclear energy can also be used to improve the quality \n"
             + "of human life. After the first steam was supplied to the turbine, \n"
             + "the workers congratulated each other: “Happy steam! »";
+    public static final String TextInfoScreenTwo = "eqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq. \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq, \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq »";
+    public static final String TextInfoScreenThree = "qfqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2qq. \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww, \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq »";
+    public static final String TextInfoScreenFour = "qqwqq \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqwqqqqq2qq. \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqwqqqqqqqqqqqqqqqqqqqqqqqqqqq \n"
+            + "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww, \n"
+            + "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq »";
+    public static final String Err= "err";
 
     public static final String TextInfoScreenOneFinal = "The reactor was shut down in 2002, but complete decommissioning of the nuclear power plant took another 13 years. As a result, the station operated for 48 years. Now it is equipped as a research complex.";
 
-    public static final String TextInfoScreenTwo = "";
+    public static final String TextInfoScreenTwoFinal = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq";
 
+    public static final String TextInfoScreenThreeFinal = "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+    public static final String TextInfoScreenFourFinal = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
     public static final String[] tutorialTexts = new String[]{
             "",
             "",

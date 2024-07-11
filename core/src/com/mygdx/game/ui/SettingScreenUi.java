@@ -1,5 +1,6 @@
 package com.mygdx.game.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
@@ -10,10 +11,8 @@ public class SettingScreenUi extends UiComponent {
     public Button music;
     public Button sound;
     public Button exit;
-
     public Label musicLabel;
     public Label soundLabel;
-    public Label exitLabel;
     public ImageButton music1;
     public ImageButton sound1;
 
@@ -34,7 +33,7 @@ public class SettingScreenUi extends UiComponent {
         Table table = new Table();
         //Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
 
-       // table.setBackground(image1.getDrawable());
+        //table.setBackground(image1.getDrawable());
         table.setPosition(80, 100);
         table.setSize(400, 800);
 
@@ -43,10 +42,8 @@ public class SettingScreenUi extends UiComponent {
 
         exit = new Button (skin, "whitebutton");
 
-        musicLabel = new Label("music: ", skin);
-        soundLabel = new Label("sound: ", skin);
-        exitLabel = new Label("Return", skin);
-
+        musicLabel = new Label("music: ", skin, "molot-font", Color.BLACK);
+        soundLabel = new Label("sound: ", skin, "molot-font", Color.BLACK);
         soundLabel.setAlignment(Align.left);
         root.setBackground(background.getDrawable());
         root.addActor(table);
@@ -71,7 +68,6 @@ public class SettingScreenUi extends UiComponent {
         table.addActor(exit);
         exit.setPosition(44, 120);
         exit.setSize(385, 60);
-        exit.add(exitLabel);
     }
     public void updateSwitchMus (boolean comp1){
         this.sound1.setChecked(comp1);
