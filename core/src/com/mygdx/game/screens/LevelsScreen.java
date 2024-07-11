@@ -20,7 +20,7 @@ public class LevelsScreen extends BaseScreen {
     LevelsScreenUi levelsScreenui;
     public static InfoScreen12 infoScreen12;
 
-    public InfoScreen infoScreen;
+    public static InfoScreen infoScreen;
 
     public LevelsScreen(NuclearGame nuclearGame) {
 

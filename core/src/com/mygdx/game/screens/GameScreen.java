@@ -62,6 +62,9 @@ public class GameScreen extends BaseScreen{
         ui.speedControl.addListener(speedControlClickedListener);
         ui.kernels.addListener(kernelsClickedListener);
         ui.cheerUp.addListener(cheerUpStopClickedListener);
+        ui.pause.addListener(pauseStopClickedListener);
+        ui.tutorial.addListener(tutorialStopClickedListener);
+        ui.info.addListener(infoStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
 
     }
@@ -83,11 +86,25 @@ public class GameScreen extends BaseScreen{
         }
     }
 
-    ClickListener gameStopClickedListener = new ClickListener() {
+    ClickListener infoStopClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            nuclearGame.setScreen(LevelsScreen.infoScreen12);
+            nuclearGame.setScreen(LevelsScreen.infoScreen);
         endGame();
+        }
+    };
+    ClickListener tutorialStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            //nuclearGame.setScreen(nuclearGame.);
+            endGame();
+        }
+    };
+    ClickListener pauseStopClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            //nuclearGame.setScreen(LevelsScreen.pauseScreen);
+            endGame();
         }
     };
 
