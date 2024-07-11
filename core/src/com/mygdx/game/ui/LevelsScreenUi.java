@@ -27,7 +27,7 @@ public class LevelsScreenUi extends UiComponent {
 
 
         // level = new ImageButton((skin,complete2 ? "bilibino-level-bw" : "bilibino-level-color");
-        level2 = new Image(new Image(skin, "bilibino-level-color").getDrawable());
+        level2 = new Image(new Image(skin, "bilibino-level-bw").getDrawable());
         //level3 = new Button(level33.getDrawable());
         level4 = new Image(new Image(skin, "chernobyl-level-bw").getDrawable());
         //level4 = new Button(level44.getDrawable());
@@ -67,7 +67,7 @@ public class LevelsScreenUi extends UiComponent {
     public void updateNpp2(boolean comp) {
         // level2.setChecked(comp);
         level2.setDrawable(new Image(
-                skin, comp ? "bilibino-level-bw" : "bilibino-level-color").getDrawable()
+                skin, comp ? "bilibino-level-color" : "bilibino-level-bw").getDrawable()
         );
     }
 

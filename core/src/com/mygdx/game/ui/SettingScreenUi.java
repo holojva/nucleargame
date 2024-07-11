@@ -1,5 +1,6 @@
 package com.mygdx.game.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Align;
@@ -41,9 +42,8 @@ public class SettingScreenUi extends UiComponent {
 
         exit = new TextButton("return", skin);
 
-        musicLabel = new Label("music: ", skin);
-        soundLabel = new Label("sound: ", skin);
-
+        musicLabel = new Label("music: ", skin, "molot-font", Color.BLACK);
+        soundLabel = new Label("sound: ", skin, "molot-font", Color.BLACK);
         soundLabel.setAlignment(Align.left);
         root.setBackground(background.getDrawable());
         root.addActor(table);

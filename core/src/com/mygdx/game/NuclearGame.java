@@ -32,13 +32,13 @@ public class NuclearGame extends Game {
 
     @Override
     public void create() {
-        skin.add("molot-font", FontBuilder.generate(20, Color.BLACK, "fonts/Molot.otf"));
+
         camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
         viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, camera);
         memoryManager = new MemoryManager();
         skin = new Skin(Gdx.files.internal(SKIN_PATH));
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+        skin.add("molot-font", FontBuilder.generate(20, Color.BLACK, "fonts/Molot.otf"));
         menuScreen = new MenuScreen(this);
         levelsScreen = new LevelsScreen(this);
         settingsScreen = new SettingsScreen(this);
