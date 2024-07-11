@@ -6,26 +6,29 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class LevelsScreenUi extends UiComponent {
-    public Button level1;
-    public Button level2;
-    public Button level3;
-    public Button level4;
+    public Image level1;
+    public Image level2;
+    public Image level3;
+    public Image level4;
     public Button exit;
 
-    public LevelsScreenUi(Skin skin) {
+    private final Skin skin;
 
+    public LevelsScreenUi(Skin skin) {
+        this.skin = skin;
         Table table = new Table();
         Label title = new Label("Choose NPP", skin);
-        Image image = new Image(new Texture("nuke/nuke/nuclear3.png"));
-        Image level11 = new Image(new Texture("nuke/nuke/nuclear7.png"));
-        Image level22 = new Image(new Texture("nuke/nuke/nuclear7.png"));
-        Image level33 = new Image(new Texture("nuke/nuke/nuclear7.png"));
-        Image level44 = new Image(new Texture("nuke/nuke/nuclear7.png"));
-        level1 = new Button(level11.getDrawable());
-        level2 = new Button(image.getDrawable());
-        level3 = new Button(image.getDrawable());
-        level4 = new Button(image.getDrawable());
+        Image image = new Image(skin, "levelscreen-bg");
+        Image level11 = new Image(skin, "obninsk-level-color");
+        level1 = new Image();
+        level1.setDrawable(level11.getDrawable());
+        level3 = new Image(new Image(skin, "beloyarsk-level-bw").getDrawable());
+
+
+        level2 = new Image(new Image(skin, "bilibino-level-bw").getDrawable());
+        level4 = new Image(new Image(skin, "chernobyl-level-bw").getDrawable());
         exit = new TextButton("Return", skin);
+
         root.setBackground(image.getDrawable());
 
         root.addActor(title);
@@ -55,5 +58,23 @@ public class LevelsScreenUi extends UiComponent {
         root.addActor(exit);
         exit.setPosition(820, 120);
         exit.setSize(200, 100);
+    }
+
+    public void updateNpp2(boolean comp) {
+        level2.setDrawable(new Image(
+                skin, comp ? "bilibino-level-color" : "bilibino-level-bw").getDrawable()
+        );
+    }
+
+    public void updateNpp3(boolean comp) {
+        level3.setDrawable(new Image(
+                skin, comp ? "beloyarsk-level-color" : "beloyarsk-level-bw").getDrawable()
+        );
+    }
+
+    public void updateNpp4(boolean comp) {
+        level4.setDrawable(new Image(
+                skin, comp ? "chernobyl-level-color" : "chernobyl-level-bw").getDrawable()
+        );
     }
 }

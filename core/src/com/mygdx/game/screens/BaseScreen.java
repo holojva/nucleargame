@@ -8,8 +8,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.NuclearGame;
 
 public class BaseScreen implements Screen {
-    Stage stage;
-    NuclearGame nuclearGame;
+    public Stage stage;
+    public final NuclearGame nuclearGame;
 
     public BaseScreen(NuclearGame nuclearGame) {
         this.nuclearGame = nuclearGame;
@@ -48,9 +48,6 @@ public class BaseScreen implements Screen {
         ScreenUtils.clear(Color.GRAY);
         stage.act(delta);
         stage.draw();
-        handleInput();
     }
 
-    public void handleInput() {
-    }
 }

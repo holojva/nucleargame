@@ -17,36 +17,39 @@ public class MenuScreenUi extends UiComponent {
     public Button settingsButton;
     public Button exitButton;
 
+    public Label start;
+    public Label settings;
+    public Label exit;
+
+
     public Table table;
 
     public MenuScreenUi(Skin skin) {
 
-        Label title = new Label("NCC SIMULATOR", skin);
-        Image image = new Image(new Texture("nuke/nuke/nuclear2.png"));
+        Image image = new Image(skin, "menuscreen-bg");
         table = new Table();
-        Image image1 = new Image(new Texture("nuke/nuke/nuclear2.png"));
 
-        title.setAlignment(Align.right);
-        title.setFontScale(2.5f);
-        title.setColor(Color.BLACK);
 
         root.setBackground(image.getDrawable());
         root.addActor(table);
-        root.addActor(title);
-        title.setPosition(1200, 950);
-        table.setPosition(1300, 100);
+        table.setPosition(1300, 30);
         table.setSize(680, 940);
-        //table.setBackground(image1.getDrawable());
 
-        startButton = new TextButton("start", skin);
-        settingsButton = new TextButton("settings", skin);
-        exitButton = new TextButton("exit", skin);
+        startButton = new Button( skin, "whitebutton");
+        settingsButton = new Button (skin, "whitebutton");
+        exitButton = new Button(skin, "whitebutton");
+        start = new Label("Start", skin);
+        settings = new Label("Settings", skin);
+        exit = new Label("Exit", skin);
 
         table.add(startButton).width(400).height(90).pad(10).space(40);
+        startButton.add(start);
         table.row();
         table.add(settingsButton).width(400).height(90).pad(10).space(40);
+        settingsButton.add(settings);
         table.row();
         table.add(exitButton).width(400).height(90).pad(10).space(40);
+        exitButton.add(exit);
 
 
     }
