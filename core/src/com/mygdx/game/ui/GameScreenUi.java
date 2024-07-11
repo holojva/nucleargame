@@ -41,6 +41,8 @@ public class GameScreenUi extends UiComponent{
 
         root.setBackground(image.getDrawable());
         root.addActor(scheme);
+        scheme.setPosition(42, 520);
+        scheme.setSize(810, 480);
         root.addActor(battery);
         root.addActor(kernels);
         kernels.setPosition(1250, 30);

@@ -17,12 +17,14 @@ import com.mygdx.game.ui.components.Switch;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class GameScreen extends BaseScreen{
+public class GameScreen extends BaseScreen {
     GameScreenUi ui;
     long startTime;
     float profit;
     boolean loos;
-    long sleepTime;
+    boolean win;
+    float sleepTime;
+    float accumulator;
     ArrayList<ChartValues> listOfValues;
 
     @Override
@@ -38,7 +40,10 @@ public class GameScreen extends BaseScreen{
         stage.addActor(ui.root);
         profit = 0;
         loos = false;
-        listOfValues = new ArrayList<>(Arrays.asList( new ChartValues(3, 10),
+        win = false;
+        sleepTime = 3f;
+        accumulator = 0;
+        listOfValues = new ArrayList<>(Arrays.asList(new ChartValues(3, 10),
                 new ChartValues(5, 12),
                 new ChartValues(2, 13),
                 new ChartValues(5, 9),
@@ -64,7 +69,6 @@ public class GameScreen extends BaseScreen{
     };
 
 
-
     ClickListener spotClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
@@ -76,12 +80,12 @@ public class GameScreen extends BaseScreen{
     ClickListener batteryClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-           passiveFatigue();
+            passiveFatigue();
         }
 
     };
 
-        ClickListener speedControlClickedListener = new ClickListener() {
+    ClickListener speedControlClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             passiveFatigue();
@@ -103,7 +107,6 @@ public class GameScreen extends BaseScreen{
         float y = (float) ui.speedControl.getValue();
         float t = (float) ((Math.pow(x * 100, 0.7) + 2.5 * Math.sin(x * 30)) / 100);
         float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow((y - t), 0.1));
-        System.out.println(z);
 
         ui.generatedPower.setCurrentValue(z);
 
@@ -111,11 +114,6 @@ public class GameScreen extends BaseScreen{
 
         if (currentTime >= ChartValues.getSumTime(listOfValues) * 1_000L) startTime = TimeUtils.millis();
         else ui.energyChart.currentPosition = (int) (currentTime / 1000);
-
-
-
-
-
 
 
         if (ui.SPOT.currentState == 1) {
@@ -141,55 +139,59 @@ public class GameScreen extends BaseScreen{
         ui.generatedPower.increaseValue(0.006f);
 
         if (ui.generatedPower.getCurrentValue() < (ui.generatedPower.getIdealValue() - ui.generatedPower.getInaccuracy())
-                || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy()))
-        {
+                || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy())) {
             ui.closeToFail.increaseValue(0.00006f);
         }
 
         if (ui.closeToFail.getCurrentValue() == 1) loos = true;
 
-        if (TimeUtils.millis() - startTime == 24000L && !loos ) {
+        if (TimeUtils.millis() - startTime == 24000L && !loos) {
             nuclearGame.setScreen(nuclearGame.winScreen);
+            win = true;
         }
         if (loos) {
             nuclearGame.setScreen(nuclearGame.loseScreen);
         }
 
-        //if
+        if (ui.fatigue.getCurrentValue() < 0.7) {
+            ui.cheerUp.getColor().a = 0;
+        }
+        else ui.cheerUp.getColor().a = 1;
 
-        if (ui.kernels.getValue() < 0.3) ui.kernelses.setPosition(75, 620);
-        if (ui.kernels.getValue() >= 0.3) ui.kernelses.setPosition(75, 660);
+
+        if (ui.kernels.getValue() < 0.3) ui.kernelses.setPosition(75, 653);
+        if (ui.kernels.getValue() >= 0.3) ui.kernelses.setPosition(75, 670);
         if (ui.kernels.getValue() >= 0.5) ui.kernelses.setPosition(75, 700);
-        if (ui.kernels.getValue() >= 0.7) ui.kernelses.setPosition(75, 740);
-        if (ui.kernels.getValue() >= 0.9) ui.kernelses.setPosition(75, 770);
+        if (ui.kernels.getValue() >= 0.7) ui.kernelses.setPosition(75, 730);
+        if (ui.kernels.getValue() >= 0.9) ui.kernelses.setPosition(75, 760);
 
-        //if (ui.speedControl.getValue() < 0.3) ui.
+        if (ui.speedControl.getValue() < 0.3) GameSettings.schemeCoolDown = 0.3f;
+        if (ui.speedControl.getValue() >= 0.3) GameSettings.schemeCoolDown = 0.24f;
+        if (ui.speedControl.getValue() >= 0.5) GameSettings.schemeCoolDown = 0.19f;
+        if (ui.speedControl.getValue() >= 0.7) GameSettings.schemeCoolDown = 0.14f;
+        if (ui.speedControl.getValue() >= 0.9) GameSettings.schemeCoolDown = 0.1f;
 
-//        if (ui.fatigue.getCurrentValue() == 0.7) {
-//            sleepTime = TimeUtils.millis();
-//        }
-//        if (ui.fatigue.getCurrentValue() > 0.7){
-//            if ((TimeUtils.millis() - sleepTime > 10000L) && (TimeUtils.millis() - sleepTime < 13000L)){
-//                stage.addActor(ui.blackout);
-//                sleepTime = TimeUtils.millis();
-//            }
-//        }
-
-
-
+        if (ui.fatigue.getCurrentValue() >= 0.7) {
+            sleeping(delta);
+        }
 
 
     }
 
-    private void passiveFatigue(){
+    private void passiveFatigue() {
         long fatigueStartTime = 300L;
         if (TimeUtils.millis() - startTime >= fatigueStartTime) {
             ui.fatigue.increaseValue(0.06f);
         }
     }
 
-
+    private void sleeping(float delta) {
+        accumulator += delta;
+        if (accumulator < sleepTime) stage.addActor(ui.blackout);
+        else accumulator -= sleepTime;
+    }
 }
+
 
 
 

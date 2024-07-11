@@ -28,7 +28,6 @@ public class Scheme extends Actor {
             accumulator -= GameSettings.schemeCoolDown;
             increase();
         }
-        System.out.println(accumulator);
     }
 
     @Override
@@ -39,5 +38,21 @@ public class Scheme extends Actor {
     private void increase() {
         schemeIdx += 1;
         if (schemeIdx >= schemes.length) schemeIdx = 0;
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        for (Image scheme : schemes) {
+            scheme.setPosition(x, y);
+        }
+    }
+
+    @Override
+    public void setSize(float x, float y) {
+        super.setPosition(x, y);
+        for (Image scheme : schemes) {
+            scheme.setSize(x, y);
+        }
     }
 }
