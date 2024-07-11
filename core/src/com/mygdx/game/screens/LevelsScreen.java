@@ -15,8 +15,6 @@ public class LevelsScreen extends BaseScreen {
     public LevelsScreenUi ui;
     GameScreen gameScreen;
     NuclearGame nuke;
-    SettingsScreen settingsScreen;
-    LevelsScreenUi levelsScreenui;
     public static InfoScreen12 infoScreen12;
 
     public InfoScreen infoScreen;
@@ -68,7 +66,6 @@ public class LevelsScreen extends BaseScreen {
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
-                // nuke.comp2 = true;
             }
         }
     };
@@ -80,20 +77,17 @@ public class LevelsScreen extends BaseScreen {
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
-                // nuke.comp3 = true;
             }
         }
     };
     ClickListener levelFourButtonClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            //System.out.println("here");
             if (MemoryManager.loadPassedLevel() >= 3) {
                 nuclearGame.gameScreen.setCurrentLevel(4);
                 infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
-                // nuke.comp4 = true;
             }
         }
     };
@@ -130,7 +124,6 @@ public class LevelsScreen extends BaseScreen {
                 System.out.println();
                 return GameSettings.Err;
         }
-//		System.out.println("current lvl: " + GameScreen.currentLevel);
     }
     public String textInfoFinal(){
         System.out.println(nuclearGame.gameScreen.getCurrentLevel());
@@ -151,7 +144,6 @@ public class LevelsScreen extends BaseScreen {
                 System.out.println();
                 return GameSettings.Err;
         }
-//		System.out.println("current lvl: " + GameScreen.currentLevel);
     }
 
     public String pictureInfo(){

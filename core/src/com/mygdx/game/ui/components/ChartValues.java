@@ -3,8 +3,8 @@ package com.mygdx.game.ui.components;
 import java.util.ArrayList;
 
 public class ChartValues implements Comparable<ChartValues> {
-    public int duration;
-    public double value;
+    public final int duration;
+    public final double value;
 
     public ChartValues(int duration, double value) {
         this.duration = duration;

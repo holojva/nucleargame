@@ -33,9 +33,6 @@ public class NuclearGame extends Game {
 	public InfoScreen12 infoScreen12;
 	public WinScreen winScreen;
 	public LoseScreen loseScreen;
-	public boolean comp2=false;
-	public boolean comp3=false;
-	public boolean comp4=false;
 	public SparklingWaterScreen sparklingWaterScreen;
     public MemoryManager memoryManager;
 
@@ -54,9 +51,6 @@ public class NuclearGame extends Game {
         gameScreen = new GameScreen(this);
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
 		viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, camera);
-
-		skin = new Skin(Gdx.files.internal(SKIN_PATH));
-		camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		menuScreen = new MenuScreen(this);
 		levelsScreen = new LevelsScreen(this);

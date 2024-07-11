@@ -9,7 +9,7 @@ import com.mygdx.game.NuclearGame;
 
 public class BaseScreen implements Screen {
     public Stage stage;
-    public NuclearGame nuclearGame;
+    public final NuclearGame nuclearGame;
 
     public BaseScreen(NuclearGame nuclearGame) {
         this.nuclearGame = nuclearGame;

@@ -123,8 +123,6 @@ public class EnergyChart extends Actor {
         shapeRenderer.end();
         batch.begin();
 
-//        System.out.println(getX());
-//        System.out.println(getY());
         borderImage.draw(batch, parentAlpha);
 
     }

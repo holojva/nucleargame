@@ -18,7 +18,7 @@ public class SettingScreenUi extends UiComponent {
 
     public SettingScreenUi(Skin skin) {
 
-        Image background = new Image(skin,"settingsscreen-bg");
+        Image background = new Image(skin, "settingsscreen-bg");
         music1 = new ImageButton(
                 new Image(skin, "Screenshot_63").getDrawable(),
                 new Image(skin, "Screenshot_63").getDrawable(),
@@ -31,16 +31,14 @@ public class SettingScreenUi extends UiComponent {
                 new Image(skin, "Screenshot_62").getDrawable()
         );
         Table table = new Table();
-        //Image image1 = new Image(new Texture("skins/default/raw/selection.png"));
 
-        //table.setBackground(image1.getDrawable());
         table.setPosition(80, 100);
         table.setSize(400, 800);
 
         music = new Button(skin, "whitebutton");
-        sound = new Button(skin,"whitebutton" );
+        sound = new Button(skin, "whitebutton");
 
-        exit = new Button (skin, "whitebutton");
+        exit = new Button(skin, "whitebutton");
 
         musicLabel = new Label("music: ", skin, "molot-font", Color.BLACK);
         soundLabel = new Label("sound: ", skin, "molot-font", Color.BLACK);
@@ -69,10 +67,12 @@ public class SettingScreenUi extends UiComponent {
         exit.setPosition(44, 120);
         exit.setSize(385, 60);
     }
-    public void updateSwitchMus (boolean comp1){
+
+    public void updateSwitchMus(boolean comp1) {
         this.sound1.setChecked(comp1);
     }
-    public void updateSwitchSound (boolean comp){
+
+    public void updateSwitchSound(boolean comp) {
         this.music1.setChecked(comp);
     }
 }

@@ -11,9 +11,8 @@ public class LevelsScreenUi extends UiComponent {
     public Image level3;
     public Image level4;
     public Button exit;
-    ImageButton level;
 
-    private Skin skin;
+    private final Skin skin;
 
     public LevelsScreenUi(Skin skin) {
         this.skin = skin;
@@ -26,11 +25,8 @@ public class LevelsScreenUi extends UiComponent {
         level3 = new Image(new Image(skin, "beloyarsk-level-bw").getDrawable());
 
 
-        // level = new ImageButton((skin,complete2 ? "bilibino-level-bw" : "bilibino-level-color");
         level2 = new Image(new Image(skin, "bilibino-level-bw").getDrawable());
-        //level3 = new Button(level33.getDrawable());
         level4 = new Image(new Image(skin, "chernobyl-level-bw").getDrawable());
-        //level4 = new Button(level44.getDrawable());
         exit = new TextButton("Return", skin);
 
         root.setBackground(image.getDrawable());
@@ -65,21 +61,18 @@ public class LevelsScreenUi extends UiComponent {
     }
 
     public void updateNpp2(boolean comp) {
-        // level2.setChecked(comp);
         level2.setDrawable(new Image(
                 skin, comp ? "bilibino-level-color" : "bilibino-level-bw").getDrawable()
         );
     }
 
     public void updateNpp3(boolean comp) {
-        // level3.setChecked(comp);
         level3.setDrawable(new Image(
                 skin, comp ? "beloyarsk-level-color" : "beloyarsk-level-bw").getDrawable()
         );
     }
 
     public void updateNpp4(boolean comp) {
-        // level4.setChecked(comp);
         level4.setDrawable(new Image(
                 skin, comp ? "chernobyl-level-color" : "chernobyl-level-bw").getDrawable()
         );

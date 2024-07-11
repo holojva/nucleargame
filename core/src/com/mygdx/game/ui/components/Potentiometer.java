@@ -14,11 +14,9 @@ public class Potentiometer extends Actor {
     Image baseImage;
     Image spinnerImage;
 
-    public double a = Math.PI / 3;
+    public double a = Math.PI / 4;
 
     private final float SPINNER_SIZE_RATIO = 0.78f;
-    private final float HORIZONTAL_MARGIN_OFFSET = -11.3f;
-    private final float VERTICAL_MARGIN_OFFSET = -2f;
 
     public Potentiometer(Skin skin) {
         baseImage = new Image(skin, "graybutton");
@@ -103,8 +101,8 @@ public class Potentiometer extends Actor {
         }
 
         private double getAngle(float x, float y) {
-            double dx = (x - spinnerImage.getX() + spinnerImage.getWidth() / 2);
-            double dy = (y - spinnerImage.getY() + spinnerImage.getHeight() / 2);
+            double dx = (x - (spinnerImage.getX() - baseImage.getX()) - spinnerImage.getWidth() / 2);
+            double dy = (y - (spinnerImage.getY() - baseImage.getY()) - spinnerImage.getHeight() / 2);
             double angle = Math.atan(dy / dx);
 
             if (dx < 0) {

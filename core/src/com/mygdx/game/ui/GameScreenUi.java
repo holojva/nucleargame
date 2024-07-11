@@ -73,8 +73,6 @@ public class GameScreenUi extends UiComponent{
         kernelses.setPosition(75, 620);
         kernelses.setSize(54, 270);
 
-
-
     }
 
 
