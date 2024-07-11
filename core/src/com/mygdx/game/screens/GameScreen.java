@@ -18,6 +18,7 @@ import com.mygdx.game.ui.components.Switch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.OptionalDouble;
 
 public class GameScreen extends BaseScreen{
 
@@ -30,6 +31,10 @@ public class GameScreen extends BaseScreen{
     float sleepTime;
     float accumulator;
     ArrayList<ChartValues> listOfValues;
+
+    ArrayList <Float> xValues;
+    ArrayList <Float> yValues;
+    float lastTermperature = 0;
 
     @Override
     public void show() {
@@ -67,6 +72,8 @@ public class GameScreen extends BaseScreen{
         ui.info.addListener(infoStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
 
+        xValues = new ArrayList<>();
+        yValues = new ArrayList<>();
     }
 
 
@@ -151,10 +158,30 @@ public class GameScreen extends BaseScreen{
     @Override
     public void render(float delta) {
         super.render(delta);
-        float x = ui.kernels.getValue();
-        float y = (float) ui.speedControl.getValue();
-        float t = (float) ((Math.pow(x * 100, 0.7) + 2.5 * Math.sin(x * 30)) / 100);
-        float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow((y - t), 0.1));
+
+        float readX = Math.max(0f, Math.min(1f, ui.kernels.getValue()));
+        float readY = Math.max(0f, Math.min(1f, ui.speedControl.getValue()));
+
+        if (xValues.size() < 50) xValues.add(readX);
+        else {
+            xValues.remove(0);
+            xValues.add(readX);
+        }
+
+        if (yValues.size() < 50) yValues.add(readY);
+        else {
+            yValues.remove(0);
+            yValues.add(readY);
+        }
+
+        double x = xValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
+        double y = yValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
+        // System.out.println("sin: " +  Math.sin(TimeUtils.millis() % 100000 / 1000f ));
+        float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow(Math.abs((y - lastTermperature)), 0.1)
+                * (((8 - Math.sin(TimeUtils.millis() % 100000 / 1000f * 0.5)) / 9)));
+        lastTermperature = (float) ((Math.pow(z * 100, 0.7) + 2.5 * Math.sin(TimeUtils.millis() / 1000f * 30)) / 100);
+
+        // System.out.println("=====" + z);
 
         ui.generatedPower.setCurrentValue(z);
 
@@ -200,7 +227,7 @@ public class GameScreen extends BaseScreen{
 
         if (ui.closeToFail.getCurrentValue() == 1) loos = true;
 
-        if (TimeUtils.millis() - startTime == 24000L && !loos) {
+        if (TimeUtils.millis() - startTime == 240000L && !loos) {
             nuclearGame.setScreen(nuclearGame.winScreen);
             win = true;
         }
@@ -218,17 +245,17 @@ public class GameScreen extends BaseScreen{
         }
 
 
-        if (ui.kernels.getValue() < 0.3) ui.kernelses.setPosition(75, 653);
-        if (ui.kernels.getValue() >= 0.3) ui.kernelses.setPosition(75, 670);
-        if (ui.kernels.getValue() >= 0.5) ui.kernelses.setPosition(75, 700);
-        if (ui.kernels.getValue() >= 0.7) ui.kernelses.setPosition(75, 730);
-        if (ui.kernels.getValue() >= 0.9) ui.kernelses.setPosition(75, 760);
+        if (x >= 0.9) ui.kernelses.setPosition(75, 760);
+        else if (x >= 0.7) ui.kernelses.setPosition(75, 730);
+        else if (x >= 0.5) ui.kernelses.setPosition(75, 700);
+        else if (x >= 0.3) ui.kernelses.setPosition(75, 670);
+        else if (x< 0.3) ui.kernelses.setPosition(75, 653);
 
-        if (ui.speedControl.getValue() < 0.3) GameSettings.schemeCoolDown = 0.3f;
-        if (ui.speedControl.getValue() >= 0.3) GameSettings.schemeCoolDown = 0.24f;
-        if (ui.speedControl.getValue() >= 0.5) GameSettings.schemeCoolDown = 0.19f;
-        if (ui.speedControl.getValue() >= 0.7) GameSettings.schemeCoolDown = 0.14f;
         if (ui.speedControl.getValue() >= 0.9) GameSettings.schemeCoolDown = 0.1f;
+        else if (ui.speedControl.getValue() >= 0.7) GameSettings.schemeCoolDown = 0.14f;
+        else if (ui.speedControl.getValue() >= 0.5) GameSettings.schemeCoolDown = 0.19f;
+        else if (ui.speedControl.getValue() >= 0.3) GameSettings.schemeCoolDown = 0.24f;
+        else if (ui.speedControl.getValue() < 0.3) GameSettings.schemeCoolDown = 0.3f;
 
         if (ui.fatigue.getCurrentValue() >= 0.7) {
             sleeping(delta);

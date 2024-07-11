@@ -135,7 +135,6 @@ public class LevelsScreen extends BaseScreen {
                 System.out.println("loadPassedLevel: 4");
                 return GameSettings.TextInfoScreenFour;
             default:
-                System.out.println();
                 return GameSettings.Err;
         }
     }
