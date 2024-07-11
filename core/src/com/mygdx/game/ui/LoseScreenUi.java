@@ -8,7 +8,7 @@ public class LoseScreenUi extends UiComponent {
     public Label info;
 
     public LoseScreenUi(Skin skin) {
-        Image background = new Image(new Texture("skins/default/raw/white.png"));
+        Image background = new Image(skin, "infoscreen-bg");
 
         info = new Label(GameSettings.TextInfoScreenOne, skin);
 

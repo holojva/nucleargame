@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.screens.*;
 import com.mygdx.game.screens.infoScreens.InfoScreen;
 import com.mygdx.game.screens.infoScreens.InfoScreen12;
+import com.mygdx.game.ui.WinScreenUi;
 
 public class NuclearGame extends Game {
 	public Skin skin;
@@ -27,6 +28,8 @@ public class NuclearGame extends Game {
 	public InfoScreen infoScreen;
 	public GameScreen gameScreen;
 	public InfoScreen12 infoScreen12;
+	public WinScreen winScreen;
+	public LoseScreen loseScreen;
 	public boolean comp2=false;
 	public boolean comp3=false;
 	public boolean comp4=false;
@@ -48,6 +51,8 @@ public class NuclearGame extends Game {
 		infoScreen12 = new InfoScreen12(this, TextInfoScreenOneFinal, "bilibino-reactor");
 		gameScreen = new GameScreen(this);
 		sparklingWaterScreen = new SparklingWaterScreen(this);
+		winScreen = new WinScreen(this);
+		loseScreen = new LoseScreen(this);
 
 		setScreen(menuScreen);
 

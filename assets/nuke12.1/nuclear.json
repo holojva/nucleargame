@@ -226,6 +226,21 @@
 		"up": "round-gray",
 		"down": "round-dark-gray",
 		"over": "round-light-gray"
+	},
+	"whitebutton": {
+		"font": "font",
+		"fontColor": "black",
+		"up": "whitebutton"
+	},
+	"graybutton": {
+		"font": "font",
+		"fontColor": "white",
+		"up": "graybutton"
+	},
+	"biggraybutton": {
+		"font": "font",
+		"fontColor": "white",
+		"up": "biggraybutton"
 	}
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {

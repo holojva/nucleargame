@@ -5,17 +5,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.mygdx.game.ui.components.*;
 
 public class GameScreenUi extends UiComponent{
+
     public Potentiometer speedControl;
     public TripleSwitch battery;
     public Slider kernels;
     public Switch SPOT;
+    public Image blackout;
     public PowerDisplay closeToFail;
     public PowerDisplay generatedPower;
     public PowerDisplay batteryCharge;
     public PowerDisplay fatigue;
     public TextButton cheerUp;
+    public EnergyChart energyChart;
+
     public GameScreenUi(Skin skin) {
-        Image image = new Image(new Texture("Group 317.png"));
+        Image image = new Image(skin, "gamescreen-bg");
+        blackout = new Image(skin,  "blackout");
         battery = new TripleSwitch(skin);
         kernels = new Slider(0, 1, 0.01f, false, skin);
         SPOT = new Switch(skin);
@@ -24,6 +29,7 @@ public class GameScreenUi extends UiComponent{
         generatedPower = new PowerDisplay(0, 1, 0.8f, 0.04f);
         batteryCharge = new PowerDisplay(0, 1, 0.8f, 0.04f);
         fatigue = new PowerDisplay(0, 1, 0.8f, 0.04f);
+        energyChart = new EnergyChart(skin);
         cheerUp = new TextButton("Cheer Up", skin);
         root.setBackground(image.getDrawable());
         root.addActor(battery);
@@ -49,6 +55,9 @@ public class GameScreenUi extends UiComponent{
         root.addActor(cheerUp);
         cheerUp.setPosition(1230, 310);
         cheerUp.setSize(670, 90);
+        energyChart.setSize(700, 513);
+        energyChart.setPosition(879, 520);
+        root.addActor(energyChart);
     }
 
 }
