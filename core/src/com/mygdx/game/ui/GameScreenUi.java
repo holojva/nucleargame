@@ -1,6 +1,7 @@
 package com.mygdx.game.ui;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.mygdx.game.ui.components.*;
 
@@ -17,8 +18,12 @@ public class GameScreenUi extends UiComponent{
     public PowerDisplay fatigue;
     public TextButton cheerUp;
     public EnergyChart energyChart;
+    public Image kernelses;
+    public Scheme scheme;
+
 
     public GameScreenUi(Skin skin) {
+
         Image image = new Image(skin, "gamescreen-bg");
         blackout = new Image(skin,  "blackout");
         battery = new TripleSwitch(skin);
@@ -31,7 +36,11 @@ public class GameScreenUi extends UiComponent{
         fatigue = new PowerDisplay(0, 1, 0.8f, 0.04f);
         energyChart = new EnergyChart(skin);
         cheerUp = new TextButton("Cheer Up", skin);
+        kernelses = new Image(skin, "kernels");
+        scheme = new Scheme(skin);
+
         root.setBackground(image.getDrawable());
+        root.addActor(scheme);
         root.addActor(battery);
         root.addActor(kernels);
         kernels.setPosition(1250, 30);
@@ -55,9 +64,16 @@ public class GameScreenUi extends UiComponent{
         root.addActor(cheerUp);
         cheerUp.setPosition(1230, 310);
         cheerUp.setSize(670, 90);
-        energyChart.setSize(700, 513);
-        energyChart.setPosition(879, 520);
         root.addActor(energyChart);
+        energyChart.setSize(700, 490);
+        energyChart.setPosition(879, 520);
+        root.addActor(kernelses);
+        kernelses.setPosition(75, 620);
+        kernelses.setSize(54, 270);
+
+
+
     }
+
 
 }

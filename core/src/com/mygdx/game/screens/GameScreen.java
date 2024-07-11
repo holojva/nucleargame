@@ -22,7 +22,7 @@ public class GameScreen extends BaseScreen{
     long startTime;
     float profit;
     boolean loos;
-    boolean sleep;
+    long sleepTime;
     ArrayList<ChartValues> listOfValues;
 
     @Override
@@ -38,7 +38,6 @@ public class GameScreen extends BaseScreen{
         stage.addActor(ui.root);
         profit = 0;
         loos = false;
-        sleep = false;
         listOfValues = new ArrayList<>(Arrays.asList( new ChartValues(3, 10),
                 new ChartValues(5, 12),
                 new ChartValues(2, 13),
@@ -120,12 +119,12 @@ public class GameScreen extends BaseScreen{
 
 
         if (ui.SPOT.currentState == 1) {
-            ui.closeToFail.decreaseValue(0.06f);
-            ui.generatedPower.decreaseValue(0.06f);
+            ui.closeToFail.decreaseValue(0.006f);
+            ui.generatedPower.decreaseValue(0.006f);
         }
         if (ui.battery.currentState == 0 && ui.batteryCharge.getCurrentValue() != 1) {
-            ui.generatedPower.decreaseValue(0.06f);
-            ui.batteryCharge.increaseValue(0.06f);
+            ui.generatedPower.decreaseValue(0.006f);
+            ui.batteryCharge.increaseValue(0.006f);
         }
         if (ui.battery.currentState == 1) {
             ui.generatedPower.increaseValue(profit);
@@ -134,17 +133,17 @@ public class GameScreen extends BaseScreen{
 
         if (ui.battery.currentState == 2 && ui.batteryCharge.getCurrentValue() != 0) {
             float startCharge = ui.batteryCharge.getCurrentValue();
-            ui.generatedPower.increaseValue(0.06f);
-            ui.batteryCharge.decreaseValue(0.06f);
+            ui.generatedPower.increaseValue(0.006f);
+            ui.batteryCharge.decreaseValue(0.006f);
             profit = ui.batteryCharge.getCurrentValue() - startCharge;
         }
 
-        ui.generatedPower.increaseValue(0.00068f);
+        ui.generatedPower.increaseValue(0.006f);
 
         if (ui.generatedPower.getCurrentValue() < (ui.generatedPower.getIdealValue() - ui.generatedPower.getInaccuracy())
                 || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy()))
         {
-            ui.closeToFail.increaseValue(0.0005f);
+            ui.closeToFail.increaseValue(0.00006f);
         }
 
         if (ui.closeToFail.getCurrentValue() == 1) loos = true;
@@ -156,9 +155,28 @@ public class GameScreen extends BaseScreen{
             nuclearGame.setScreen(nuclearGame.loseScreen);
         }
 
-        if (sleep) {
-            stage.addActor(ui.blackout);
-        }
+        //if
+
+        if (ui.kernels.getValue() < 0.3) ui.kernelses.setPosition(75, 620);
+        if (ui.kernels.getValue() >= 0.3) ui.kernelses.setPosition(75, 660);
+        if (ui.kernels.getValue() >= 0.5) ui.kernelses.setPosition(75, 700);
+        if (ui.kernels.getValue() >= 0.7) ui.kernelses.setPosition(75, 740);
+        if (ui.kernels.getValue() >= 0.9) ui.kernelses.setPosition(75, 770);
+
+        //if (ui.speedControl.getValue() < 0.3) ui.
+
+//        if (ui.fatigue.getCurrentValue() == 0.7) {
+//            sleepTime = TimeUtils.millis();
+//        }
+//        if (ui.fatigue.getCurrentValue() > 0.7){
+//            if ((TimeUtils.millis() - sleepTime > 10000L) && (TimeUtils.millis() - sleepTime < 13000L)){
+//                stage.addActor(ui.blackout);
+//                sleepTime = TimeUtils.millis();
+//            }
+//        }
+
+
+
 
 
     }

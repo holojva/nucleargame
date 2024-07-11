@@ -1,11 +1,13 @@
 package com.mygdx.game.ui.components;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.mygdx.game.GameSettings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -95,22 +97,25 @@ public class EnergyChart extends Actor {
 
             float part = (float) getMaxPart(ChartValues.getValue(valuesList, i));
 
-            float offsetX = 593f;
-            float offsetY = 500f;
+            float ratioX = (float) Gdx.graphics.getWidth() / GameSettings.SCREEN_WIDTH;
+            float ratioY = (float) Gdx.graphics.getHeight() / GameSettings.SCREEN_HEIGHT;
 
-            float x1 = (float) (getX() + (i - (currentPosition - VISUALIZING_TIME_GAP / 2.)) * getWidth() / VISUALIZING_TIME_GAP);
-            float x2 = x1 + getWidth() / VISUALIZING_TIME_GAP;
-            float y = (float) (getY() + VERTICAL_PADDING + (getHeight() - 2 * VERTICAL_PADDING) * part);
+
+
+
+            float x1 = (float) (getX() * ratioX + (i - (currentPosition - VISUALIZING_TIME_GAP / 2.)) * getWidth() * ratioX / VISUALIZING_TIME_GAP);
+            float x2 = x1 + getWidth() * ratioX / VISUALIZING_TIME_GAP;
+            float y = (float) (getY() * ratioY + VERTICAL_PADDING + (getHeight() * ratioY - 2 * VERTICAL_PADDING) * part);
             System.out.println(y);
-            shapeRenderer.rectLine(x1 - offsetX, y - offsetY , x2 - offsetX , y - offsetY , CHART_LINE_WIDTH);
+            shapeRenderer.rectLine(x1, y , x2 , y , CHART_LINE_WIDTH);
 
             if (i + 1 < ChartValues.getSumTime(valuesList)
                     && i + 1 - currentPosition < VISUALIZING_TIME_GAP / 2) {
 
                 float part2 =  (float) getMaxPart(ChartValues.getValue(valuesList, i + 1));
-                float y2 = (float) (getY() + VERTICAL_PADDING + (getHeight() - 2 * VERTICAL_PADDING) * part2);
-                if (y > y2) shapeRenderer.rectLine(x2 - offsetX, y + CHART_LINE_WIDTH / 2 - offsetY, x2 - offsetX, y2 - CHART_LINE_WIDTH / 2 - offsetY, CHART_LINE_WIDTH);
-                else shapeRenderer.rectLine(x2 - offsetX, y - CHART_LINE_WIDTH / 2 - offsetY, x2 - offsetX, y2 + CHART_LINE_WIDTH / 2 - offsetY, CHART_LINE_WIDTH);
+                float y2 = (float) (getY() * ratioY + VERTICAL_PADDING + (getHeight() * ratioY - 2 * VERTICAL_PADDING) * part2);
+                if (y > y2) shapeRenderer.rectLine(x2, y + CHART_LINE_WIDTH / 2, x2, y2 - CHART_LINE_WIDTH / 2, CHART_LINE_WIDTH);
+                else shapeRenderer.rectLine(x2, y - CHART_LINE_WIDTH / 2, x2, y2 + CHART_LINE_WIDTH / 2, CHART_LINE_WIDTH);
 
             }
         }

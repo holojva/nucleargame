@@ -83,60 +83,32 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-Untitled (1)
-  rotate: false
-  xy: 1, 316
-  size: 916, 680
-  orig: 916, 680
-  offset: 0, 0
-  index: -1
 Untitled (4)
   rotate: false
-  xy: 1, 1435
+  xy: 1, 1189
   size: 1138, 576
   orig: 1138, 576
   offset: 0, 0
   index: -1
 Untitled (7)
   rotate: false
-  xy: 1, 1435
+  xy: 1, 1189
   size: 1138, 576
   orig: 1138, 576
   offset: 0, 0
   index: -1
-base
+frame2
   rotate: false
-  xy: 1, 998
-  size: 1043, 435
-  orig: 1043, 435
+  xy: 1, 1
+  size: 1076, 592
+  orig: 1076, 592
   offset: 0, 0
   index: -1
-infoscreen-bg
+frame3
   rotate: false
-  xy: 1141, 1531
-  size: 854, 480
-  orig: 854, 480
-  offset: 0, 0
-  index: -1
-levelscreen-bg
-  rotate: false
-  xy: 919, 1
-  size: 854, 480
-  orig: 854, 480
-  offset: 0, 0
-  index: -1
-settingsscreen-bg
-  rotate: false
-  xy: 919, 483
-  size: 912, 513
-  orig: 912, 513
-  offset: 0, 0
-  index: -1
-Без имени-2 1
-  rotate: false
-  xy: 1141, 1049
-  size: 854, 480
-  orig: 854, 480
+  xy: 1, 595
+  size: 1076, 592
+  orig: 1076, 592
   offset: 0, 0
   index: -1
 
@@ -145,64 +117,119 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
+Untitled (1)
+  rotate: false
+  xy: 1, 278
+  size: 916, 680
+  orig: 916, 680
+  offset: 0, 0
+  index: -1
+base
+  rotate: false
+  xy: 1, 960
+  size: 1043, 435
+  orig: 1043, 435
+  offset: 0, 0
+  index: -1
+frame1
+  rotate: false
+  xy: 1, 1397
+  size: 1076, 592
+  orig: 1076, 592
+  offset: 0, 0
+  index: -1
+gamescreen-bg
+  rotate: false
+  xy: 1079, 966
+  size: 855, 508
+  orig: 855, 508
+  offset: 0, 0
+  index: -1
+infoscreen-bg
+  rotate: false
+  xy: 1046, 484
+  size: 854, 480
+  orig: 854, 480
+  offset: 0, 0
+  index: -1
+levelscreen-bg
+  rotate: false
+  xy: 919, 2
+  size: 854, 480
+  orig: 854, 480
+  offset: 0, 0
+  index: -1
+settingsscreen-bg
+  rotate: false
+  xy: 1079, 1476
+  size: 912, 513
+  orig: 912, 513
+  offset: 0, 0
+  index: -1
+
+nuclear8.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
 Untitled (14)
   rotate: false
-  xy: 855, 180
+  xy: 857, 815
   size: 777, 607
   orig: 777, 607
   offset: 0, 0
   index: -1
 Untitled (9)
   rotate: false
-  xy: 857, 789
+  xy: 857, 1424
   size: 833, 575
   orig: 833, 575
   offset: 0, 0
   index: -1
 Untitled+(5)
   rotate: false
-  xy: 857, 1366
+  xy: 855, 1
   size: 846, 74
   orig: 846, 74
   offset: 0, 0
   index: -1
 blackout
   rotate: false
-  xy: 1, 479
+  xy: 1, 47
   size: 852, 506
   orig: 852, 506
   offset: 0, 0
   index: -1
 coffeescreen-bg
   rotate: false
-  xy: 1, 1
+  xy: 855, 77
   size: 846, 476
   orig: 846, 476
   offset: 0, 0
   index: -1
-gamescreen-bg
-  rotate: false
-  xy: 857, 1442
-  size: 853, 507
-  orig: 853, 507
-  offset: 0, 0
-  index: -1
 menuscreen-bg
   rotate: false
-  xy: 1, 987
+  xy: 1, 555
   size: 854, 480
   orig: 854, 480
   offset: 0, 0
   index: -1
 menuscreen-bg-text
   rotate: false
-  xy: 1, 1469
+  xy: 1, 1037
+  size: 854, 480
+  orig: 854, 480
+  offset: 0, 0
+  index: -1
+Без имени-2 1
+  rotate: false
+  xy: 1, 1519
   size: 854, 480
   orig: 854, 480
   offset: 0, 0
   index: -1
 
-nuclear8.png
+nuclear9.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -472,7 +499,7 @@ check-radio
   index: -1
 checkbox
   rotate: false
-  xy: 613, 753
+  xy: 1763, 558
   size: 19, 16
   orig: 19, 16
   offset: 0, 0
@@ -500,7 +527,7 @@ checkbox-on
   index: -1
 checkbox-pressed
   rotate: false
-  xy: 646, 977
+  xy: 613, 753
   size: 19, 16
   orig: 19, 16
   offset: 0, 0
@@ -760,6 +787,13 @@ icon-trash
   orig: 22, 22
   offset: 0, 0
   index: -1
+kernels
+  rotate: false
+  xy: 646, 926
+  size: 20, 67
+  orig: 20, 67
+  offset: 0, 0
+  index: -1
 lamp
   rotate: false
   xy: 613, 201
@@ -805,7 +839,7 @@ menu-button-over
   index: -1
 menu-button
   rotate: false
-  xy: 1763, 550
+  xy: 646, 900
   size: 7, 24
   split: 1, 1, 3, 1
   pad: 3, 3, 0, 0
@@ -814,7 +848,7 @@ menu-button
   index: -1
 menu-button-down
   rotate: false
-  xy: 646, 951
+  xy: 613, 727
   size: 7, 24
   split: 1, 1, 3, 1
   pad: 3, 3, 0, 0

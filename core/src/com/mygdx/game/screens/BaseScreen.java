@@ -48,9 +48,6 @@ public class BaseScreen implements Screen {
         ScreenUtils.clear(Color.GRAY);
         stage.act(delta);
         stage.draw();
-        handleInput();
     }
 
-    public void handleInput() {
-    }
 }

@@ -3,7 +3,8 @@ package com.mygdx.game;
 public class GameSettings {
     public static final int SCREEN_WIDTH = 1920;
     public static final int SCREEN_HEIGHT = 1080;
-    public static final String SKIN_PATH = "nuke12.3/nuclear.json";
+    public static final String SKIN_PATH = "nuclear.json";
+    public static float schemeCoolDown = 3000f;
 
     // TextResources:
     public static final String TextInfoScreenOne = "On June 26, 1954, under the leadership of Igor Vasilyevich \n"
