@@ -12,6 +12,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.managers.MemoryManager;
 import com.mygdx.game.screens.*;
 import com.mygdx.game.screens.infoScreens.InfoScreen;
 import com.mygdx.game.screens.infoScreens.InfoScreen12;
@@ -48,6 +49,8 @@ public class NuclearGame extends Game {
 		gameScreen = new GameScreen(this);
 
 		setScreen(menuScreen);
+
+		MemoryManager.savePassedLevel(0);
 
 	}
 
