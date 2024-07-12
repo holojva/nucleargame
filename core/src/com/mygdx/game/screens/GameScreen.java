@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -29,7 +30,7 @@ public class GameScreen extends BaseScreen{
     float profit;
     boolean loos;
     boolean win;
-    float sleepTime;
+    long sleepTime;
     float accumulator;
     ArrayList<ChartValues> listOfValues;
 
@@ -51,16 +52,10 @@ public class GameScreen extends BaseScreen{
         profit = 0;
         loos = false;
         win = false;
-        sleepTime = 3f;
+        sleepTime = 30000L;
         accumulator = 0;
-        listOfValues = new ArrayList<>(Arrays.asList(new ChartValues(3, 10),
-                new ChartValues(5, 12),
-                new ChartValues(2, 13),
-                new ChartValues(5, 9),
-                new ChartValues(1, 10),
-                new ChartValues(10, 12),
-                new ChartValues(5, 12),
-                new ChartValues(5, 5))
+        listOfValues = new ArrayList<>(Arrays.asList(new ChartValues(8, 10),
+                new ChartValues(80, 12))
         );
 
         ui.SPOT.addListener(spotClickedListener);
@@ -72,6 +67,7 @@ public class GameScreen extends BaseScreen{
         ui.tutorial.addListener(tutorialStopClickedListener);
         ui.info.addListener(infoStopClickedListener);
         ui.energyChart.setValuesList(listOfValues, true);
+        ui.blackout.setVisible(false);
 
         xValues = new ArrayList<>();
         yValues = new ArrayList<>();
@@ -177,12 +173,10 @@ public class GameScreen extends BaseScreen{
 
         double x = xValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
         double y = yValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
-        // System.out.println("sin: " +  Math.sin(TimeUtils.millis() % 100000 / 1000f ));
         float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow(Math.abs((y - lastTermperature)), 0.1)
                 * (((8 - Math.sin(TimeUtils.millis() % 100000 / 1000f * 0.5)) / 9)));
         lastTermperature = (float) ((Math.pow(z * 100, 0.7) + 2.5 * Math.sin(TimeUtils.millis() / 1000f * 30)) / 100);
 
-        // System.out.println("=====" + z);
 
         ui.generatedPower.setCurrentValue(z);
 
@@ -194,16 +188,18 @@ public class GameScreen extends BaseScreen{
 
         if (ui.SPOT.currentState == 1) {
             ui.closeToFail.decreaseValue(0.006f);
-            ui.generatedPower.decreaseValue(0.006f);
+            ui.generatedPower.decreaseValue(0.6f);
         }
-        if (ui.battery.currentState == 0 && ui.batteryCharge.getCurrentValue() != 1) {
-            ui.generatedPower.decreaseValue(0.006f);
+        if (ui.battery.currentState == 0 && ui.batteryCharge.getCurrentValue() != 1 && ui.generatedPower.getCurrentValue() != 0) {
+            ui.generatedPower.decreaseValue(0.06f);
             ui.batteryCharge.increaseValue(0.006f);
         }
         if (ui.battery.currentState == 1) {
             ui.generatedPower.increaseValue(profit);
             profit = 0;
         }
+
+        if (ui.fatigue.getCurrentValue() >= 0.8) ui.closeToFail.increaseValue(0.003f);
 
         if (ui.battery.currentState == 2 && ui.batteryCharge.getCurrentValue() != 0) {
             float startCharge = ui.batteryCharge.getCurrentValue();
@@ -212,17 +208,17 @@ public class GameScreen extends BaseScreen{
             profit = ui.batteryCharge.getCurrentValue() - startCharge;
         }
 
-        ui.generatedPower.increaseValue(0.006f);
-
         if (ui.generatedPower.getCurrentValue() < (ui.generatedPower.getIdealValue() - ui.generatedPower.getInaccuracy())
                 || ui.generatedPower.getCurrentValue() > (ui.generatedPower.getIdealValue() + ui.generatedPower.getInaccuracy())) {
-            ui.closeToFail.increaseValue(0.00006f);
+            ui.closeToFail.increaseValue(0.0002f);
+        } else {
+            ui.closeToFail.decreaseValue(0.0002f);
         }
 
         if (ui.battery.currentState == 1) {
             ui.batteryImage.getColor().a = 0;
         }
-        if (ui.battery.currentState != 1) {
+        if (ui.battery.currentState != 1 && ui.generatedPower.getCurrentValue() != 0) {
             ui.batteryImage.getColor().a = 1;
         }
 
@@ -238,12 +234,13 @@ public class GameScreen extends BaseScreen{
 
         if (ui.fatigue.getCurrentValue() < 0.7) {
             ui.cheerUp.getColor().a = 0;
-            ui.cheerUp.setDisabled(false);
+            ui.cheerUp.setTouchable(Touchable.disabled);
         }
         else {
             ui.cheerUp.getColor().a = 1;
-            ui.cheerUp.setDisabled(true);
+            ui.cheerUp.setTouchable(Touchable.enabled);
         }
+
 
 
         if (x >= 0.9) ui.kernelses.setPosition(75, 760);
@@ -258,28 +255,17 @@ public class GameScreen extends BaseScreen{
         else if (ui.speedControl.getValue() >= 0.3) GameSettings.schemeCoolDown = 0.24f;
         else if (ui.speedControl.getValue() < 0.3) GameSettings.schemeCoolDown = 0.3f;
 
-        if (ui.fatigue.getCurrentValue() >= 0.7) {
-            sleeping(delta);
-        }
-
-
     }
 
     private void passiveFatigue() {
-        long fatigueStartTime = 300L;
+        long fatigueStartTime = 30L;
         if (TimeUtils.millis() - startTime >= fatigueStartTime) {
-            ui.fatigue.increaseValue(0.06f);
+            ui.fatigue.increaseValue(0.03f);
         }
     }
 
-    private void sleeping(float delta) {
-        accumulator += delta;
-        if (accumulator < sleepTime) {
-            stage.addActor(ui.blackout);
-            ui.blackout.setSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
-        }
-        else accumulator -= sleepTime;
-    }
+
+
 }
 
 

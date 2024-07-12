@@ -11,9 +11,9 @@ import com.mygdx.game.ui.InfoScreenUi1;
 public class InfoScreen extends BaseScreen {
     public InfoScreenUi1 ui;
 
-    public InfoScreen(NuclearGame nuclearGame, String x, String skin) {
+    public InfoScreen(NuclearGame nuclearGame) {
         super(nuclearGame);
-        ui = new InfoScreenUi1(nuclearGame.skin, skin, x);
+        ui = new InfoScreenUi1(nuclearGame.skin);
         stage.addActor(ui.root);
         stage.addListener(gameStartClickedListener);
 

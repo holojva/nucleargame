@@ -50,7 +50,6 @@ public class LevelsScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.menuScreen);
-            AudioManager.playMusic(AudioManager.startScreenBackgroundMusic);
         }
     };
     ClickListener levelOneButtonClickedListener = new ClickListener() {
@@ -59,7 +58,7 @@ public class LevelsScreen extends BaseScreen {
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             nuclearGame.gameScreen.setCurrentLevel(1);
-            infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+            infoScreen = new InfoScreen(nuclearGame);
             infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
             nuclearGame.setScreen(infoScreen);
         }
@@ -73,7 +72,7 @@ public class LevelsScreen extends BaseScreen {
 
             if (MemoryManager.loadPassedLevel() >= 1) {
                 nuclearGame.gameScreen.setCurrentLevel(2);
-                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
             }
@@ -86,7 +85,7 @@ public class LevelsScreen extends BaseScreen {
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 2) {
                 nuclearGame.gameScreen.setCurrentLevel(3);
-                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
             }
@@ -99,7 +98,7 @@ public class LevelsScreen extends BaseScreen {
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
             if (MemoryManager.loadPassedLevel() >= 3) {
                 nuclearGame.gameScreen.setCurrentLevel(4);
-                infoScreen = new InfoScreen(nuclearGame, textInfo(), pictureInfo());
+                infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
             }

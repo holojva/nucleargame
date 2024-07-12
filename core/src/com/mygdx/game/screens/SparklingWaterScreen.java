@@ -57,6 +57,7 @@ public class SparklingWaterScreen extends BaseScreen {
                     nuclearGame.gameScreen.ui.fatigue.getCurrentValue() * decreasePart
             );
             nuclearGame.setScreen(nuclearGame.gameScreen);
+            AudioManager.playMusic(AudioManager.gameScreenBackgroundMusic);
         }
     };
 

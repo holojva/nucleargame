@@ -18,7 +18,7 @@ public class MenuScreen extends BaseScreen {
         ui.exitButton.addListener(exitButtonClickedListener);
         ui.startButton.addListener(startButtonClickedListener);
         ui.settingsButton.addListener(settingsButtonClickedListener);
-        AudioManager.playMusic(AudioManager.startScreenBackgroundMusic);
+        AudioManager.playMusic(AudioManager.levelScreenBackgroundMusic);
 
     }
 
@@ -33,7 +33,6 @@ public class MenuScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.levelsScreen);
-            AudioManager.playMusic(AudioManager.levelScreenBackgroundMusic);
         }
     };
 
@@ -41,7 +40,6 @@ public class MenuScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.settingsScreen);
-            AudioManager.playMusic(AudioManager.settingsScreenBackgroundMusic);
         }
     };
 }

@@ -23,7 +23,6 @@ public class SettingsScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.menuScreen);
-            AudioManager.playMusic(AudioManager.startScreenBackgroundMusic);
         }
     };
 }

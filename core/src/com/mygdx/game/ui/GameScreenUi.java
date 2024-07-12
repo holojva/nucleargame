@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.ui.components.*;
 
 public class GameScreenUi extends UiComponent{
@@ -83,16 +84,16 @@ public class GameScreenUi extends UiComponent{
         root.addActor(SPOT);
         root.addActor(closeToFail);
         closeToFail.setPosition(1242, 815);
-        closeToFail.setCurrentValue(0);
+        closeToFail.setSize(650,44);
         root.addActor(generatedPower);
         generatedPower.setPosition(1242, 700);
-        generatedPower.setCurrentValue(0.7f);
+        generatedPower.setSize(650, 44);
         root.addActor(batteryCharge);
         batteryCharge.setPosition(1242, 585);
-        batteryCharge.setCurrentValue(0);
+        batteryCharge.setSize(650, 44);
         root.addActor(fatigue);
         fatigue.setPosition(1242, 467);
-        fatigue.setCurrentValue(0);
+        fatigue.setSize(650, 44);
         root.addActor(speedControl);
         speedControl.setPosition(935, 20);
         speedControl.setSize(180, 180);
@@ -139,6 +140,8 @@ public class GameScreenUi extends UiComponent{
         root.addActor(batteryImage);
         batteryImage.setPosition(950, 150);
         batteryImage.setSize(350,450);
+        root.addActor(blackout);
+        blackout.setSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
     }
 
 
