@@ -137,7 +137,8 @@ public class GameScreenUi extends UiComponent{
         root.addActor(time);
         time.setPosition(27, 350);
         root.addActor(batteryImage);
-        batteryImage.setPosition(600, 300);
+        batteryImage.setPosition(950, 150);
+        batteryImage.setSize(350,450);
     }
 
 
