@@ -1,6 +1,7 @@
 package com.mygdx.game.ui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -13,7 +14,7 @@ public class PauseScreenUi extends UiComponent{
     public Button exit;
     public Label exitLabel;
     public PauseScreenUi(Skin skin) {
-        Image image = new Image(skin, "menuscreen-bg");
+        Image image = new Image(new Texture("nuke13.1/nuke13.1/pausescreen.jpeg"));
         retLabel = new Label("return", skin, "molot-font", Color.BLACK);
         exitLabel = new Label("exit", skin, "molot-font", Color.BLACK);
         exit = new Button(skin, "whitebutton");

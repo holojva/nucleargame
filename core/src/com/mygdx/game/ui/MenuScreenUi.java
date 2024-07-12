@@ -25,7 +25,7 @@ public class MenuScreenUi extends UiComponent {
     public Table table;
 
     public MenuScreenUi(Skin skin) {
-        Label title = new Label("Simulator NPP", skin, "molot-font", Color.BLACK);
+        Label title = new Label("Atomic Hero", skin, "molot-font", Color.BLACK);
         Image image = new Image(skin, "menuscreen-bg");
         table = new Table();
 
