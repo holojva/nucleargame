@@ -23,6 +23,7 @@ import java.util.OptionalDouble;
 public class GameScreen extends BaseScreen{
 
     public static int currentLevel;
+    PauseScreen pauseScreen;
     GameScreenUi ui;
     long startTime;
     float profit;
@@ -109,8 +110,8 @@ public class GameScreen extends BaseScreen{
     };
     ClickListener pauseStopClickedListener = new ClickListener() {
         @Override
-        public void clicked(InputEvent event, float x, float y) {
-            //nuclearGame.setScreen(LevelsScreen.pauseScreen);
+            public void clicked(InputEvent event, float x, float y) {
+            nuclearGame.setScreen(nuclearGame.pauseScreen);
             endGame();
         }
     };

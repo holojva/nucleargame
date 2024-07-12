@@ -24,7 +24,7 @@ public class NuclearGame extends Game {
 	public Skin skin;
 	public OrthographicCamera camera;
 	public FitViewport viewport;
-
+	public PauseScreen pauseScreen;
 	public MenuScreen menuScreen;
 	public LevelsScreen levelsScreen;
 	public SettingsScreen settingsScreen;
@@ -51,7 +51,7 @@ public class NuclearGame extends Game {
         gameScreen = new GameScreen(this);
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
 		viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, camera);
-
+		pauseScreen = new PauseScreen(this);
 		menuScreen = new MenuScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
