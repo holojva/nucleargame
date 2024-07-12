@@ -1,10 +1,12 @@
 package com.mygdx.game.ui.components;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.mygdx.game.GameSettings;
 
 public class PowerDisplay extends Actor {
     private final float minValue;
@@ -35,16 +37,20 @@ public class PowerDisplay extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.end();
 
+        float ratioX = (float) Gdx.graphics.getWidth() / GameSettings.SCREEN_WIDTH;
+        float ratioY = (float) Gdx.graphics.getHeight() / GameSettings.SCREEN_HEIGHT;
+
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(BORDER_COLOR);
-        shapeRenderer.rect(getX(), getY(), getWidth(), getHeight());
+        shapeRenderer.rect(getX() * ratioX, getY() * ratioY, getWidth() * ratioX, getHeight() * ratioY);
 
-        float lineSize = Math.min(Math.round(Math.min(getHeight(), getWidth()) / 20), 5);
+        float lineSize = Math.min(Math.round(Math.min(getHeight() * ratioY , getWidth() * ratioX) / 20), 5);
 
-        float LinedX = getX() + lineSize;
-        float LinedY = getY() + lineSize;
-        float LinedWidth = getWidth() - lineSize * 2;
-        float LinedHeight = getHeight() - lineSize * 2;
+
+        float LinedX = getX() * ratioX + lineSize;
+        float LinedY = getY() * ratioY+ lineSize;
+        float LinedWidth = getWidth() * ratioX  - lineSize * 2 * ratioX;
+        float LinedHeight = getHeight() * ratioY - lineSize * 2 * ratioY;
 
         shapeRenderer.setColor(PROGRESS_BACKGROUND);
         shapeRenderer.rect(LinedX, LinedY, LinedWidth, LinedHeight);
