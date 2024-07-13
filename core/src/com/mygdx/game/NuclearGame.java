@@ -45,7 +45,8 @@ public class NuclearGame extends Game {
         skin = new Skin(Gdx.files.internal(SKIN_PATH));
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         skin.add("molot-font", FontBuilder.generate(40, Color.BLACK, "fonts/Molot.otf"));
-        menuScreen = new MenuScreen(this);
+		skin.add("molot-font-green", FontBuilder.generate(40, Color.GREEN, "fonts/Molot.otf"));
+		menuScreen = new MenuScreen(this);
         levelsScreen = new LevelsScreen(this);
         settingsScreen = new SettingsScreen(this);
         gameScreen = new GameScreen(this);

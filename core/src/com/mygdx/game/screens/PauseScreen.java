@@ -15,12 +15,18 @@ public class PauseScreen extends BaseScreen{
         stage.addActor(ui.root);
         ui.ret.addListener(retClickedListener);
         ui.exit.addListener(exitClickedListener);
+        ui.level.addListener(levelsClickedListener);
     }
     ClickListener retClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.gameScreen);
-            //endGame();
+        }
+    };
+    ClickListener levelsClickedListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            nuclearGame.setScreen(nuclearGame.levelsScreen);
         }
     };
     ClickListener exitClickedListener = new ClickListener() {
@@ -28,7 +34,6 @@ public class PauseScreen extends BaseScreen{
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.pauseScreen);
             Gdx.app.exit();
-            //endGame();
         }
     };
 }

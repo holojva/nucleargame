@@ -47,8 +47,8 @@ public class GameScreenUi extends UiComponent{
         kernels = new Slider(0, 1, 0.01f, false, skin);
         SPOT = new Switch(skin);
         cheerUp = new Button(skin, "graybutton");
-        date = new Label( "Date: 18 October. (3 jobtime)", skin, "molot-font", Color.WHITE);
-        time = new Label("TIME: 12:17", skin, "molot-font", Color.WHITE);
+        date = new Label( "Date: 18 October. (3 jobtime)", skin, "molot-font-green", Color.WHITE);
+        time = new Label("TIME: 12:17", skin, "molot-font-green", Color.WHITE);
         speedControl = new Potentiometer(skin);
         closeToFail = new PowerDisplay(0, 1, 0.8f, 0.04f);
         closeToFail.setShowError(false);
