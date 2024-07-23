@@ -24,7 +24,7 @@ public class NuclearGame extends Game {
 	public Skin skin;
 	public OrthographicCamera camera;
 	public FitViewport viewport;
-
+	public PauseScreen pauseScreen;
 	public MenuScreen menuScreen;
 	public LevelsScreen levelsScreen;
 	public SettingsScreen settingsScreen;
@@ -44,19 +44,20 @@ public class NuclearGame extends Game {
         memoryManager = new MemoryManager();
         skin = new Skin(Gdx.files.internal(SKIN_PATH));
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        skin.add("molot-font", FontBuilder.generate(20, Color.BLACK, "fonts/Molot.otf"));
-        menuScreen = new MenuScreen(this);
+        skin.add("molot-font", FontBuilder.generate(40, Color.BLACK, "fonts/Molot.otf"));
+		skin.add("molot-font-green", FontBuilder.generate(40, Color.GREEN, "fonts/Molot.otf"));
+		menuScreen = new MenuScreen(this);
         levelsScreen = new LevelsScreen(this);
         settingsScreen = new SettingsScreen(this);
         gameScreen = new GameScreen(this);
 		camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
 		viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, camera);
-
+		pauseScreen = new PauseScreen(this);
 		menuScreen = new MenuScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
-		infoScreen = new InfoScreen(this, TextInfoScreenOne, "bilibino-npp");
-		infoScreen12 = new InfoScreen12(this, TextInfoScreenOneFinal, "bilibino-reactor");
+		//infoScreen = new InfoScreen(this, TextInfoScreenOne, "bilibino-npp");
+		//infoScreen12 = new InfoScreen12(this, TextInfoScreenOneFinal, "bilibino-reactor");
 		gameScreen = new GameScreen(this);
 		sparklingWaterScreen = new SparklingWaterScreen(this);
 		winScreen = new WinScreen(this);

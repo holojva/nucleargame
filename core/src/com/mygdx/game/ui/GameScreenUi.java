@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.ui.components.*;
 
 public class GameScreenUi extends UiComponent{
@@ -15,9 +16,14 @@ public class GameScreenUi extends UiComponent{
     public Switch SPOT;
     public Image blackout;
     public PowerDisplay closeToFail;
+    public Label closeToFailLabel;
     public PowerDisplay generatedPower;
+    public Label generatedPowerLabel;
     public PowerDisplay batteryCharge;
+    public Label batteryChargeLabel;
     public PowerDisplay fatigue;
+    public Label fatigueLabel;
+    public Label cheerUpLabel;
     public Button cheerUp;
     public Button pause;
     public Button info;
@@ -28,21 +34,35 @@ public class GameScreenUi extends UiComponent{
     public EnergyChart energyChart;
     public Image kernelses;
     public Scheme scheme;
+    public Label date;
+    public Label time;
+    public Image batteryImage;
 
 
     public GameScreenUi(Skin skin) {
-
         Image image = new Image(skin, "gamescreen-bg");
         blackout = new Image(skin,  "blackout");
         battery = new TripleSwitch(skin);
+        batteryImage = new Image(skin, "battery");
         kernels = new Slider(0, 1, 0.01f, false, skin);
         SPOT = new Switch(skin);
+        cheerUp = new Button(skin, "graybutton");
+        date = new Label( "Date: 18 October. (3 jobtime)", skin, "molot-font-green", Color.WHITE);
+        time = new Label("TIME: 12:17", skin, "molot-font-green", Color.WHITE);
         speedControl = new Potentiometer(skin);
         closeToFail = new PowerDisplay(0, 1, 0.8f, 0.04f);
+        closeToFail.setShowError(false);
         generatedPower = new PowerDisplay(0, 1, 0.8f, 0.04f);
         batteryCharge = new PowerDisplay(0, 1, 0.8f, 0.04f);
+        batteryCharge.setShowError(false);
         fatigue = new PowerDisplay(0, 1, 0.8f, 0.04f);
+        closeToFailLabel = new Label("Close to Fail", skin, "molot-font", Color.BLACK);
+        generatedPowerLabel = new Label("Generated Power",  skin, "molot-font", Color.BLACK);
+        batteryChargeLabel = new Label("Battery charge",  skin, "molot-font", Color.BLACK);
+        fatigueLabel = new Label("Fatigue",  skin, "molot-font", Color.BLACK);
+        fatigue.setShowError(false);
         energyChart = new EnergyChart(skin);
+        cheerUpLabel = new Label("Cheer Up", skin, "molot-font", Color.BLACK);
         pauseLabel = new Label("Pause", skin, "molot-font", Color.BLACK);
         tutorialLabel = new Label("Tutorial", skin, "molot-font", Color.BLACK);
         infoLabel = new Label("Info", skin, "molot-font", Color.BLACK);
@@ -55,7 +75,7 @@ public class GameScreenUi extends UiComponent{
 
         root.setBackground(image.getDrawable());
         root.addActor(scheme);
-        scheme.setPosition(42, 520);
+        scheme.setPosition(42, 480);
         scheme.setSize(810, 480);
         root.addActor(battery);
         root.addActor(kernels);
@@ -63,23 +83,24 @@ public class GameScreenUi extends UiComponent{
         kernels.setSize(550, 150);
         root.addActor(SPOT);
         root.addActor(closeToFail);
-        closeToFail.setPosition(619, 402);
-        closeToFail.setCurrentValue(0);
+        closeToFail.setPosition(1242, 815);
+        closeToFail.setSize(650,44);
         root.addActor(generatedPower);
-        generatedPower.setPosition(618, 345);
-        generatedPower.setCurrentValue(0.7f);
+        generatedPower.setPosition(1242, 700);
+        generatedPower.setSize(650, 44);
         root.addActor(batteryCharge);
-        batteryCharge.setPosition(619, 292);
-        batteryCharge.setCurrentValue(0);
+        batteryCharge.setPosition(1242, 585);
+        batteryCharge.setSize(650, 44);
         root.addActor(fatigue);
-        fatigue.setPosition(618, 228);
-        fatigue.setCurrentValue(0);
+        fatigue.setPosition(1242, 467);
+        fatigue.setSize(650, 44);
         root.addActor(speedControl);
         speedControl.setPosition(935, 20);
         speedControl.setSize(180, 180);
         root.addActor(cheerUp);
         cheerUp.setPosition(1230, 310);
         cheerUp.setSize(670, 90);
+        cheerUp.add(cheerUpLabel);
         root.addActor(info);
         info.setPosition(1230, 950);
         info.setSize(200, 90);
@@ -90,9 +111,9 @@ public class GameScreenUi extends UiComponent{
         infoLabel.setAlignment(Align.center);
         tutorialLabel.setAlignment(Align.center);
         pauseLabel.setAlignment(Align.center);
-        pauseLabel.setPosition(70, 35);
-        tutorialLabel.setPosition(55, 35);
-        infoLabel.setPosition(80, 35);
+        pauseLabel.setPosition(45, 23);
+        tutorialLabel.setPosition(15, 25);
+        infoLabel.setPosition(65, 23);
         tutorial.setPosition(1450, 950);
         tutorial.setSize(200, 90);
         root.addActor(pause);
@@ -100,11 +121,27 @@ public class GameScreenUi extends UiComponent{
         pause.setSize(200, 90);
         root.addActor(energyChart);
         energyChart.setSize(700, 490);
-        energyChart.setPosition(879, 520);
+        energyChart.setPosition(879, 480);
         root.addActor(kernelses);
         kernelses.setPosition(75, 620);
         kernelses.setSize(54, 270);
-
+        root.addActor(closeToFailLabel);
+        closeToFailLabel.setPosition(1242, 860);
+        root.addActor(generatedPowerLabel);
+        generatedPowerLabel.setPosition(1242, 745);
+        root.addActor(batteryChargeLabel);
+        batteryChargeLabel.setPosition(1242, 630);
+        root.addActor(fatigueLabel);
+        fatigueLabel.setPosition(1242, 512);
+        root.addActor(date);
+        date.setPosition(27, 400);
+        root.addActor(time);
+        time.setPosition(27, 350);
+        root.addActor(batteryImage);
+        batteryImage.setPosition(950, 150);
+        batteryImage.setSize(350,450);
+        root.addActor(blackout);
+        blackout.setSize(GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
     }
 
 
