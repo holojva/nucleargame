@@ -14,7 +14,7 @@ import java.util.Collections;
 
 public class EnergyChart extends Actor {
 
-    ArrayList<ChartValues> valuesList;
+    public ArrayList<ChartValues> valuesList;
 
     private final int VISUALIZING_TIME_GAP = 20; // how many seconds fit in horizontal graph
     private final double VERTICAL_PADDING = 50;

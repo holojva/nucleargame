@@ -30,13 +30,12 @@ public class GameScreen extends BaseScreen{
     float profit;
     boolean loos;
     boolean win;
-    long sleepTime;
     float accumulator;
     ArrayList<ChartValues> listOfValues;
 
     ArrayList <Float> xValues;
     ArrayList <Float> yValues;
-    float lastTermperature = 0;
+    float lastTemperature = 0;
 
     @Override
     public void show() {
@@ -52,10 +51,12 @@ public class GameScreen extends BaseScreen{
         profit = 0;
         loos = false;
         win = false;
-        sleepTime = 30000L;
         accumulator = 0;
-        listOfValues = new ArrayList<>(Arrays.asList(new ChartValues(8, 10),
-                new ChartValues(80, 12))
+        listOfValues = new ArrayList<>(Arrays.asList(new ChartValues(5, 0.8),
+                new ChartValues(6, 0.59),
+                new ChartValues(4, 0.75),
+                new ChartValues(6, 0.77),
+                new ChartValues(7, 0.8))
         );
 
         ui.SPOT.addListener(spotClickedListener);
@@ -156,6 +157,8 @@ public class GameScreen extends BaseScreen{
     public void render(float delta) {
         super.render(delta);
 
+        ui.generatedPower.setIdealValue(ChartValues.getValue(ui.energyChart.valuesList, ui.energyChart.currentPosition));
+
         float readX = Math.max(0f, Math.min(1f, ui.kernels.getValue()));
         float readY = Math.max(0f, Math.min(1f, ui.speedControl.getValue()));
 
@@ -173,9 +176,9 @@ public class GameScreen extends BaseScreen{
 
         double x = xValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
         double y = yValues.stream().mapToDouble(it -> (double) it).average().orElse(0);
-        float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow(Math.abs((y - lastTermperature)), 0.1)
+        float z = (float) (Math.pow(x, 0.3) * 1 / Math.pow(Math.abs((y - lastTemperature)), 0.1)
                 * (((8 - Math.sin(TimeUtils.millis() % 100000 / 1000f * 0.5)) / 9)));
-        lastTermperature = (float) ((Math.pow(z * 100, 0.7) + 2.5 * Math.sin(TimeUtils.millis() / 1000f * 30)) / 100);
+        lastTemperature = (float) ((Math.pow(z * 100, 0.7) + 2.5 * Math.sin(TimeUtils.millis() / 1000f * 30)) / 100);
 
 
         ui.generatedPower.setCurrentValue(z);
@@ -255,12 +258,30 @@ public class GameScreen extends BaseScreen{
         else if (ui.speedControl.getValue() >= 0.3) GameSettings.schemeCoolDown = 0.24f;
         else if (ui.speedControl.getValue() < 0.3) GameSettings.schemeCoolDown = 0.3f;
 
+        if (ui.fatigue.getCurrentValue() >= 0.7) {
+            sleeping(delta);
+        }
+
     }
 
     private void passiveFatigue() {
-        long fatigueStartTime = 30L;
+        long fatigueStartTime = 90000L;
         if (TimeUtils.millis() - startTime >= fatigueStartTime) {
             ui.fatigue.increaseValue(0.03f);
+        }
+    }
+
+    private void sleeping(float delta) {
+        accumulator += delta;
+        if (accumulator <= 2f) {
+            stage.addActor(ui.blackout);
+        } else if (accumulator > 2f && accumulator <= 8f) {
+            ui.blackout.getColor().a = 0;
+            ui.blackout.setTouchable(Touchable.disabled);
+        } else {
+            ui.blackout.getColor().a = 1;
+            ui.blackout.setTouchable(Touchable.enabled);
+            accumulator = 0;
         }
     }
 

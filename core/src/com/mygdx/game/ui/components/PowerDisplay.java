@@ -11,7 +11,7 @@ import com.mygdx.game.GameSettings;
 public class PowerDisplay extends Actor {
     private final float minValue;
     private final float maxValue;
-    private final float idealValue;
+    private float idealValue;
     private final float inaccuracy;
     private float currentValue;
     private final ShapeRenderer shapeRenderer;
@@ -98,6 +98,10 @@ public class PowerDisplay extends Actor {
     }
     public void decreaseValue(float coefficient) {
         setCurrentValue(currentValue - coefficient);
+    }
+
+    public void setIdealValue(float idealValue) {
+        this.idealValue = idealValue;
     }
 
 }
