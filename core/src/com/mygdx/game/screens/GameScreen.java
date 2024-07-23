@@ -24,7 +24,6 @@ import java.util.OptionalDouble;
 public class GameScreen extends BaseScreen{
 
     public static int currentLevel;
-    PauseScreen pauseScreen;
     GameScreenUi ui;
     long startTime;
     float profit;
@@ -41,7 +40,11 @@ public class GameScreen extends BaseScreen{
     public void show() {
         super.show();
         startTime = TimeUtils.millis();
-        ui.generatedPower.setCurrentValue(0.5f);
+        if (MemoryManager.loadPassedLevel() < 3) {
+            ui.batteryCharge.setVisible(false);
+            ui.battery.setVisible(false);
+            ui.batteryChargeLabel.setVisible(false);
+        }
     }
 
     public GameScreen(NuclearGame nuclearGame) {
@@ -101,7 +104,6 @@ public class GameScreen extends BaseScreen{
     ClickListener tutorialStopClickedListener = new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            //nuclearGame.setScreen(nuclearGame.);
             endGame();
         }
     };
@@ -117,7 +119,7 @@ public class GameScreen extends BaseScreen{
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.sparklingWaterScreen);
-            AudioManager.playMusic(AudioManager.coffeeScreenBackgroundMusic);
+            if (MemoryManager.loadIsMusicOn()) AudioManager.playMusic(AudioManager.coffeeScreenBackgroundMusic);
         }
     };
 

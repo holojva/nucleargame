@@ -24,7 +24,6 @@ public class SettingScreenUi extends UiComponent {
                 new Image(skin, "Screenshot_63").getDrawable(),
                 new Image(skin, "Screenshot_62").getDrawable()
         );
-        //Image sound1 = new Image(skin, "Screenshot_63");
         sound1 = new ImageButton(
                 new Image(skin, "Screenshot_63").getDrawable(),
                 new Image(skin, "Screenshot_63").getDrawable(),

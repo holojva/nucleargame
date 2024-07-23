@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.AudioManager;
 import com.mygdx.game.NuclearGame;
+import com.mygdx.game.managers.MemoryManager;
 
 public class SparklingWaterScreen extends BaseScreen {
     SparklingWaterScreenUi ui;
@@ -57,7 +58,7 @@ public class SparklingWaterScreen extends BaseScreen {
                     nuclearGame.gameScreen.ui.fatigue.getCurrentValue() * decreasePart
             );
             nuclearGame.setScreen(nuclearGame.gameScreen);
-            AudioManager.playMusic(AudioManager.gameScreenBackgroundMusic);
+            if (MemoryManager.loadIsMusicOn()) AudioManager.playMusic(AudioManager.gameScreenBackgroundMusic);
         }
     };
 
