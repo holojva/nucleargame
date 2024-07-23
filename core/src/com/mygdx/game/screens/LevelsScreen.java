@@ -70,8 +70,8 @@ public class LevelsScreen extends BaseScreen {
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
 
-            if (MemoryManager.loadPassedLevel() >= 1) {
-                nuclearGame.gameScreen.setCurrentLevel(2);
+            if (MemoryManager.loadPassedLevel() >= 2) {
+                nuclearGame.gameScreen.setCurrentLevel(3);
                 infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
@@ -83,8 +83,8 @@ public class LevelsScreen extends BaseScreen {
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
-            if (MemoryManager.loadPassedLevel() >= 2) {
-                nuclearGame.gameScreen.setCurrentLevel(3);
+            if (MemoryManager.loadPassedLevel() >= 4) {
+                nuclearGame.gameScreen.setCurrentLevel(5);
                 infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
@@ -96,8 +96,8 @@ public class LevelsScreen extends BaseScreen {
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.infoScreen);
             AudioManager.playMusic(AudioManager.infoScreenBackgroundMusic);
-            if (MemoryManager.loadPassedLevel() >= 3) {
-                nuclearGame.gameScreen.setCurrentLevel(4);
+            if (MemoryManager.loadPassedLevel() >= 6) {
+                nuclearGame.gameScreen.setCurrentLevel(7);
                 infoScreen = new InfoScreen(nuclearGame);
                 infoScreen12 = new InfoScreen12(nuclearGame, textInfoFinal(), pictureInfoFinal());
                 nuclearGame.setScreen(infoScreen);
@@ -109,28 +109,28 @@ public class LevelsScreen extends BaseScreen {
         int passedLevel = MemoryManager.loadPassedLevel();
         System.out.println("passed level: "  + passedLevel );
         switch (passedLevel) {
-            case 4:
-            case 3:
+            case 8:
+            case 6:
                 ui.updateNpp4(true);
-            case 2:
+            case 4:
                 ui.updateNpp3(true);
-            case 1:
+            case 2:
                 ui.updateNpp2(true);
         }
     }
     public String textInfo(){
         System.out.println(nuclearGame.gameScreen.getCurrentLevel());
         switch (nuclearGame.gameScreen.getCurrentLevel()){
-            case 1:
+            case 2:
                 System.out.println("loadPassedLevel: 1");
                 return GameSettings.TextInfoScreenOne;
-            case 2:
+            case 4:
                 System.out.println("loadPassedLevel: 2");
                 return GameSettings.TextInfoScreenTwo;
-            case 3:
+            case 6:
                 System.out.println("loadPassedLevel: 3");
                 return GameSettings.TextInfoScreenThree;
-            case 4:
+            case 8:
                 System.out.println("loadPassedLevel: 4");
                 return GameSettings.TextInfoScreenFour;
             default:
