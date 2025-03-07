@@ -14,7 +14,7 @@ public class Potentiometer extends Actor {
     Image baseImage;
     Image spinnerImage;
 
-    public double a = Math.PI / 4;
+    public double a = Math.PI / 3.7;
 
     private final float SPINNER_SIZE_RATIO = 0.78f;
 
@@ -52,8 +52,8 @@ public class Potentiometer extends Actor {
         spinnerImage.draw(batch, parentAlpha);
     }
 
-    public double getValue() {
-        return (1 - (Math.toRadians(spinnerImage.getRotation()) - a) / (Math.PI * 2 - a * 2));
+    public float getValue() {
+        return (float) (1 - (Math.toRadians(spinnerImage.getRotation()) - a) / (Math.PI * 2 - a * 2));
     }
 
     private class PotentiometerInputLister extends InputListener {

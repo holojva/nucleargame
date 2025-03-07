@@ -14,7 +14,7 @@ import java.util.Collections;
 
 public class EnergyChart extends Actor {
 
-    ArrayList<ChartValues> valuesList;
+    public ArrayList<ChartValues> valuesList;
 
     private final int VISUALIZING_TIME_GAP = 20; // how many seconds fit in horizontal graph
     private final double VERTICAL_PADDING = 50;
@@ -58,7 +58,6 @@ public class EnergyChart extends Actor {
             maxValue = Collections.max(valuesList).value;
             minValue = Collections.min(valuesList).value;
 
-            System.out.println("maxValue: " + maxValue + " minValue: " + minValue);
         }
     }
 
@@ -106,7 +105,6 @@ public class EnergyChart extends Actor {
             float x1 = (float) (getX() * ratioX + (i - (currentPosition - VISUALIZING_TIME_GAP / 2.)) * getWidth() * ratioX / VISUALIZING_TIME_GAP);
             float x2 = x1 + getWidth() * ratioX / VISUALIZING_TIME_GAP;
             float y = (float) (getY() * ratioY + VERTICAL_PADDING + (getHeight() * ratioY - 2 * VERTICAL_PADDING) * part);
-            System.out.println(y);
             shapeRenderer.rectLine(x1, y , x2 , y , CHART_LINE_WIDTH);
 
             if (i + 1 < ChartValues.getSumTime(valuesList)

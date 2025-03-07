@@ -11,13 +11,13 @@ public class LevelsScreenUi extends UiComponent {
     public Image level3;
     public Image level4;
     public Button exit;
-
+    public Label exitLabel;
     private final Skin skin;
 
     public LevelsScreenUi(Skin skin) {
         this.skin = skin;
         Table table = new Table();
-        Label title = new Label("Choose NPP", skin);
+        Label title = new Label("Choose NPP", skin, "molot-font", Color.BLACK);
         Image image = new Image(skin, "levelscreen-bg");
         Image level11 = new Image(skin, "obninsk-level-color");
         level1 = new Image();
@@ -27,7 +27,8 @@ public class LevelsScreenUi extends UiComponent {
 
         level2 = new Image(new Image(skin, "bilibino-level-bw").getDrawable());
         level4 = new Image(new Image(skin, "chernobyl-level-bw").getDrawable());
-        exit = new TextButton("Return", skin);
+        exit = new Button(skin,"whitebutton");
+        exitLabel = new Label("return", skin, "molot-font", Color.BLACK);
 
         root.setBackground(image.getDrawable());
 
@@ -58,6 +59,10 @@ public class LevelsScreenUi extends UiComponent {
         root.addActor(exit);
         exit.setPosition(820, 120);
         exit.setSize(200, 100);
+
+        root.addActor(exitLabel);
+        exitLabel.setPosition(852, 120);
+        exitLabel.setSize(200, 100);
     }
 
     public void updateNpp2(boolean comp) {

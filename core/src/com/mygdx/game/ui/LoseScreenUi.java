@@ -5,12 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.mygdx.game.GameSettings;
 
 public class LoseScreenUi extends UiComponent {
-    public Label info;
-
     public LoseScreenUi(Skin skin) {
-        Image background = new Image(skin, "infoscreen-bg");
+        Image background = new Image(new Texture("Group 396 (1).png"));
 
-        info = new Label(GameSettings.TextInfoScreenOne, skin);
 
         root.setBackground(background.getDrawable());
     }

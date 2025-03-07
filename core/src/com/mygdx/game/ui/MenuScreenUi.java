@@ -25,11 +25,15 @@ public class MenuScreenUi extends UiComponent {
     public Table table;
 
     public MenuScreenUi(Skin skin) {
-
+        Label title = new Label("ATOMIC HERO", skin, "molot-font", Color.BLACK);
         Image image = new Image(skin, "menuscreen-bg");
         table = new Table();
 
-
+        root.addActor(title);
+        title.setAlignment(Align.right);
+        title.setFontScale(2.5f);
+        title.setPosition(420, 900);
+        title.setSize(1000, 100);
         root.setBackground(image.getDrawable());
         root.addActor(table);
         table.setPosition(1300, 30);
@@ -38,9 +42,9 @@ public class MenuScreenUi extends UiComponent {
         startButton = new Button( skin, "whitebutton");
         settingsButton = new Button (skin, "whitebutton");
         exitButton = new Button(skin, "whitebutton");
-        start = new Label("Start", skin);
-        settings = new Label("Settings", skin);
-        exit = new Label("Exit", skin);
+        start = new Label("Start", skin,"molot-font", Color.BLACK);
+        settings = new Label("Settings", skin,"molot-font", Color.BLACK);
+        exit = new Label("Exit", skin,"molot-font", Color.BLACK);
 
         table.add(startButton).width(400).height(90).pad(10).space(40);
         startButton.add(start);

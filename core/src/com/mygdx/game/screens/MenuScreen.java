@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.AudioManager;
 import com.mygdx.game.NuclearGame;
+import com.mygdx.game.managers.MemoryManager;
 import com.mygdx.game.ui.MenuScreenUi;
 
 public class MenuScreen extends BaseScreen {
@@ -18,7 +19,7 @@ public class MenuScreen extends BaseScreen {
         ui.exitButton.addListener(exitButtonClickedListener);
         ui.startButton.addListener(startButtonClickedListener);
         ui.settingsButton.addListener(settingsButtonClickedListener);
-        AudioManager.playMusic(AudioManager.startScreenBackgroundMusic);
+        if (MemoryManager.loadIsMusicOn()) AudioManager.playMusic(AudioManager.levelScreenBackgroundMusic);
 
     }
 
@@ -33,7 +34,6 @@ public class MenuScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.levelsScreen);
-            AudioManager.playMusic(AudioManager.levelScreenBackgroundMusic);
         }
     };
 
@@ -41,7 +41,6 @@ public class MenuScreen extends BaseScreen {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             nuclearGame.setScreen(nuclearGame.settingsScreen);
-            AudioManager.playMusic(AudioManager.settingsScreenBackgroundMusic);
         }
     };
 }
